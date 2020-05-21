@@ -6,7 +6,7 @@ end
 local heroList = {}
 local heroItems = {}
 local heroAbilities = {}
-local hero = CreateUnitByName("npc_dota_hero_drow_ranger", Vector(0,-1200,0), true, hPlayer, hPlayer, DOTA_TEAM_GOODGUYS)
+local hero = CreateHeroForPlayer("npc_dota_hero_drow_ranger", hPlayer)
 heroList["0"] = hero
 heroItems["0"] = {
     { ["name"] = "item_belt_of_strength", ["cost"] = 450},
@@ -35,7 +35,7 @@ heroAbilities["0"] = {0,1,0,2,0,5,0,2}
 14 = ability_capture
 --]]
 
-hero = CreateUnitByName("npc_dota_hero_axe", Vector(0,-1200,0), true, hPlayer, hPlayer, DOTA_TEAM_GOODGUYS)
+hero = CreateHeroForPlayer("npc_dota_hero_axe", hPlayer)
 heroList["1"] = hero
 heroItems["1"] = {
     { ["name"] = "item_vitality_booster", ["cost"] = 1100},
@@ -65,7 +65,7 @@ heroAbilities["1"] = {2,0,2,1,2,5,2,0}
 14 = ability_capture
 --]]
 
-hero = CreateUnitByName("npc_dota_hero_lina", Vector(0,-1200,0), true, hPlayer, hPlayer, DOTA_TEAM_GOODGUYS)
+hero = CreateHeroForPlayer("npc_dota_hero_lina", hPlayer)
 heroList["2"] = hero
 heroItems["2"] = {
     { ["name"] = "item_belt_of_strength", ["cost"] = 450},
@@ -96,7 +96,7 @@ heroAbilities["2"] = {1,0,1,0,1,5,1,0,0}
 14 = ability_capture
 --]]
 
-hero = CreateUnitByName("npc_dota_hero_sven", Vector(0,-1200,0), true, hPlayer, hPlayer, DOTA_TEAM_GOODGUYS)
+hero = CreateHeroForPlayer("npc_dota_hero_sven", hPlayer)
 heroList["3"] = hero
 heroItems["3"] = {
     { ["name"] = "item_belt_of_strength", ["cost"] = 450},
@@ -128,7 +128,8 @@ heroAbilities["3"] = {0,2,0,2,0,5,0,2}
 14 = ability_capture
 --]]
 
-hero = CreateUnitByName("npc_dota_hero_silencer", Vector(0,-1200,0), true, hPlayer, hPlayer, DOTA_TEAM_GOODGUYS)
+hero = CreateHeroForPlayer("npc_dota_hero_silencer", hPlayer)
+--hero = CreateHeroForPlayer("npc_dota_hero_necrolyte", Vector(0,-1200,0), true, hPlayer, hPlayer, DOTA_TEAM_GOODGUYS)
 heroList["4"] = hero
 heroItems["4"] = {
     { ["name"] = "item_belt_of_strength", ["cost"] = 450},
@@ -163,8 +164,12 @@ heroAbilities["4"] = {0,2,0,2,0,5,0,2,2}
 14 = ability_capture
 --]]
 
+local i = 0
 for heroKey, hero in pairs(heroList) do
     hero:SetControllableByPlayer(0, true)
+    hero:SetOrigin(Vector(-600 + i*300,-1200,0))
+    i = i + 1
+
     for i = 1, INITIAL_ROUND - 1 do
       hero:HeroLevelUp(false)
     end

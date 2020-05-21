@@ -1,0 +1,42 @@
+.Score
+{
+    flow-children: down;
+	horizontal-align: left;
+	vertical-align: top;
+    margin-top: 150px;
+    margin-left: 15px;
+}
+
+#Heroes
+{
+    flow-children: down;
+}
+
+.Hero
+{
+    flow-children: right;
+    margin-bottom: 15px;
+}
+
+.DamageRed,
+.DamageBlue,
+.DamageWhite
+{
+	color: white;
+	font-size: 20px;
+    font-weight: bold;
+    text-shadow: 4px 4px 4px #121212;
+	text-align: center;
+	margin-left: 5px;
+	width: 60px;
+    vertical-align: middle;
+}
+
+.DamageRed
+{
+	color: #F88;
+}
+.DamageBlue
+{
+	color: #88F;
+}

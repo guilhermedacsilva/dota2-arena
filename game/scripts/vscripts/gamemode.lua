@@ -18,6 +18,7 @@ end
 --require('libraries/projectiles')
 -- This library can be used for sending panorama notifications to the UIs of players/teams/everyone
 require('libraries/notifications')
+require('libraries/myscore')
 -- This library can be used for starting customized animations on units from lua
 --require('libraries/animations')
 -- This library can be used for performing "Frankenstein" attachments on units
@@ -69,6 +70,8 @@ end
 ]]
 function GameMode:PostLoadPrecache()
   DebugPrint("[BAREBONES] Performing Post-Load precache")
+
+  PrecacheItemByNameAsync( "item_tombstone", function(...) end )
   --PrecacheItemByNameAsync("item_example_item", function(...) end)
   --PrecacheItemByNameAsync("example_ability", function(...) end)
 
@@ -137,7 +140,6 @@ function GameMode:OnGameInProgress()
     require("test/test_heroes")
   end
 
-
   ENTITY_TOP_LEFT = Entities:FindByName(nil, "top_left")
   ENTITY_TOP_RIGHT = Entities:FindByName(nil, "top_right")
   ENTITY_BOT_LEFT = Entities:FindByName(nil, "bot_left")
@@ -164,8 +166,39 @@ function GameMode:InitGameMode()
   Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
+  self._damageTable = {}
 
   ListenToGameEvent("game_rules_state_change", Dynamic_Wrap(self, "OnStateChange"), self)
+  GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( GameMode, "DamageFilter" ), self )
+end
+
+-- damage, damagetype_const, entindex_attacker_const, entindex_victim_const
+function GameMode:DamageFilter( filterTable )
+  if filterTable["entindex_attacker_const"] == nil then
+    return true
+  end
+  local attacker = EntIndexToHScript( filterTable["entindex_attacker_const"] )
+  if filterTable["damage"] > 0 and attacker ~= nil and attacker:IsRealHero() then
+    local heroName = attacker:GetName()
+
+    if (self._damageTable[heroName] == nil) then
+      self._damageTable[heroName] = {
+        [DAMAGE_TYPE_PHYSICAL] = 0, -- 1
+        [DAMAGE_TYPE_MAGICAL] = 0, -- 2
+        [DAMAGE_TYPE_PURE] = 0 -- 4
+      }
+    end
+
+    if filterTable["damagetype_const"] ~= DAMAGE_TYPE_HP_REMOVAL then -- 8
+      self._damageTable[heroName][filterTable["damagetype_const"]] = self._damageTable[heroName][filterTable["damagetype_const"]] + filterTable["damage"]
+    else
+      self._damageTable[heroName][DAMAGE_TYPE_MAGICAL] = self._damageTable[heroName][DAMAGE_TYPE_MAGICAL] + filterTable["damage"]
+    end
+
+  end
+
+  MyScore:update(self._damageTable)
+  return true
 end
 
 -- This is an example console command

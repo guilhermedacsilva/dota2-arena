@@ -33,52 +33,7 @@ function GameRound:BeginRound()
     self._vEventHandles = {
         ListenToGameEvent( "entity_killed", Dynamic_Wrap( GameRound, "OnEntityKilled" ), self )
     }
-
-    --[[
-    self._vEnemiesRemaining = {}
-    self._vEventHandles = {
-        ListenToGameEvent( "npc_spawned", Dynamic_Wrap( GameRound, "OnNPCSpawned" ), self ),
-        ListenToGameEvent( "entity_killed", Dynamic_Wrap( GameRound, "OnEntityKilled" ), self ),
-        ListenToGameEvent( "dota_item_picked_up", Dynamic_Wrap( GameRound, 'OnItemPickedUp' ), self ),
-        ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( GameRound, 'OnHoldoutReviveComplete' ), self )
-    }
-
-    self._vPlayerStats = {}
-    for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-        self._vPlayerStats[ nPlayerID ] = {
-            nCreepsKilled = 0,
-            nGoldBagsCollected = 0,
-            nPriorRoundDeaths = PlayerResource:GetDeaths( nPlayerID ),
-            nPlayersResurrected = 0
-        }
-    end
-
-    self._nGoldRemainingInRound = self._nMaxGold
-    self._nGoldBagsRemaining = self._nBagCount
-    self._nGoldBagsExpired = 0
-    self._nCoreUnitsTotal = 0
-    for _, spawner in pairs( self._vSpawners ) do
-        spawner:Begin()
-        self._nCoreUnitsTotal = self._nCoreUnitsTotal + spawner:GetTotalUnitsToSpawn()
-    end
-    self._nCoreUnitsKilled = 0
-
-    self._entQuest = SpawnEntityFromTableSynchronous( "quest", {
-        name = self._szRoundTitle,
-        title =  self._szRoundQuestTitle
-    })
-    self._entQuest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_ROUND, self._nRoundNumber )
-    self._entQuest:SetTextReplaceString( self._gameMode:GetDifficultyString() )
-
-    self._entKillCountSubquest = SpawnEntityFromTableSynchronous( "subquest_base", {
-        show_progress_bar = true,
-        progress_bar_hue_shift = -119
-    } )
-    self._entQuest:AddSubquest( self._entKillCountSubquest )
-    self._entKillCountSubquest:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, self._nCoreUnitsTotal )
-    --]]
 end
-
 
 function GameRound:OnEntityKilled(event)
     local killedUnit = EntIndexToHScript( event.entindex_killed )
@@ -174,7 +129,7 @@ end
 
 
 function GameRound:CheckForDefeat()
-    if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+    if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS or TEST_5_HEROES then
         return
     end
 
@@ -193,7 +148,7 @@ function GameRound:CheckForDefeat()
     end
 
     if bAllPlayersDead then
-        GameRules:MakeTeamLose( DOTA_TEAM_GOODGUYS )
+        --GameRules:MakeTeamLose( DOTA_TEAM_GOODGUYS )
         return
     end
 end

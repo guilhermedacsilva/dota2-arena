@@ -68,7 +68,7 @@ end
 -- state as necessary
 function GameMode:OnPlayerReconnect(keys)
   DebugPrint( '[BAREBONES] OnPlayerReconnect' )
-  DebugPrintTable(keys) 
+  DebugPrintTable(keys)
 end
 
 -- An item was purchased by a player
@@ -81,11 +81,11 @@ function GameMode:OnItemPurchased( keys )
   if not plyID then return end
 
   -- The name of the item purchased
-  local itemName = keys.itemname 
-  
+  local itemName = keys.itemname
+
   -- The cost of the item purchased
   local itemcost = keys.itemcost
-  
+
 end
 
 -- An ability was used by a player
@@ -218,33 +218,41 @@ end
 -- An entity died
 function GameMode:OnEntityKilled( keys )
   DebugPrint( '[BAREBONES] OnEntityKilled Called' )
-  DebugPrintTable( keys )
-  
+  --DebugPrintTable( keys )
 
-  -- The Unit that was Killed
+  --[[
   local killedUnit = EntIndexToHScript( keys.entindex_killed )
-  -- The Killing entity
   local killerEntity = nil
 
   if keys.entindex_attacker ~= nil then
     killerEntity = EntIndexToHScript( keys.entindex_attacker )
   end
 
-  -- The ability/item used to kill, or nil if not killed by an item/ability
   local killerAbility = nil
-
   if keys.entindex_inflictor ~= nil then
     killerAbility = EntIndexToHScript( keys.entindex_inflictor )
   end
+  --]]
 
-  local damagebits = keys.damagebits -- This might always be 0 and therefore useless
-
-  -- Put code here to handle when an entity gets killed
+  local killedUnit = EntIndexToHScript( keys.entindex_killed )
+  if killedUnit and killedUnit:IsRealHero() then
+    if TEST_5_HEROES then
+      killedUnit:RespawnUnit()
+    else
+      local newItem = CreateItem( "item_tombstone", killedUnit, killedUnit )
+      newItem:SetPurchaseTime( 0 )
+      newItem:SetPurchaser( killedUnit )
+      local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
+      tombstone:SetContainedItem( newItem )
+      tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
+      FindClearSpaceForUnit( tombstone, killedUnit:GetAbsOrigin(), true )
+    end
+  end
 end
 
 
 
--- This function is called 1 to 2 times as the player connects initially but before they 
+-- This function is called 1 to 2 times as the player connects initially but before they
 -- have completely connected
 function GameMode:PlayerConnect(keys)
   DebugPrint('[BAREBONES] PlayerConnect')
@@ -255,11 +263,11 @@ end
 function GameMode:OnConnectFull(keys)
   DebugPrint('[BAREBONES] OnConnectFull')
   DebugPrintTable(keys)
-  
+
   local entIndex = keys.index+1
   -- The Player entity of the joining user
   local ply = EntIndexToHScript(entIndex)
-  
+
   -- The Player ID of the joining player
   local playerID = ply:GetPlayerID()
 end
@@ -283,8 +291,8 @@ function GameMode:OnItemCombined(keys)
   local player = PlayerResource:GetPlayer(plyID)
 
   -- The name of the item purchased
-  local itemName = keys.itemname 
-  
+  local itemName = keys.itemname
+
   -- The cost of the item purchased
   local itemcost = keys.itemcost
 end
@@ -308,7 +316,7 @@ function GameMode:OnTowerKill(keys)
   local team = keys.teamnumber
 end
 
--- This function is called whenever a player changes there custom team selection during Game Setup 
+-- This function is called whenever a player changes there custom team selection during Game Setup
 function GameMode:OnPlayerSelectedCustomTeam(keys)
   DebugPrint('[BAREBONES] OnPlayerSelectedCustomTeam')
   DebugPrintTable(keys)
