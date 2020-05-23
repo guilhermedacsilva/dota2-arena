@@ -167,7 +167,7 @@ heroAbilities["4"] = {0,2,0,2,0,5,0,2,2}
 local i = 0
 for heroKey, hero in pairs(heroList) do
     hero:SetControllableByPlayer(0, true)
-    hero:SetOrigin(Vector(-600 + i*300,-1200,0))
+    hero:SetOrigin(Vector(-600 + i*300,-1200,150))
     i = i + 1
 
     for i = 1, INITIAL_ROUND - 1 do
@@ -194,3 +194,7 @@ for heroKey, hero in pairs(heroList) do
     end
     --]]
 end
+
+
+hero = PlayerResource:GetSelectedHeroEntity( 0 )
+hero:SetOrigin(ENTITY_BOT_LEFT:GetOrigin())

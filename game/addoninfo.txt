@@ -1,22 +1,10 @@
 "AddonInfo"
 {
   "TeamCount" "10"
-  "maps"      "template_map playground"
+  "maps"      "main"
   "IsPlayable"  "1"
-  "template_map"
+  "main"
   {
-          "MaxPlayers"                    "10"
+          "MaxPlayers"                    "5"
   }
-  "playground"
-  {
-          "MaxPlayers"                    "10"
-  }
-//  "desert_duo"
-//  {
-//          "MaxPlayers"                    "10"
-//  }
-//  "forest_solo"
-//  {
-//          "MaxPlayers"                    "10"
-//  }
 }

@@ -1,11 +1,13 @@
 -- In this file you can set up all the properties and settings for your game mode.
 
-FORCE_PICKED_HERO = "npc_dota_hero_axe"                 -- What hero should we force all players to spawn as? (e.g. "npc_dota_hero_axe").  Use nil to allow players to pick their own hero.
+TEST_5_HEROES = true
+INITIAL_ROUND = 5
+
+if TEST_5_HEROES then
+    FORCE_PICKED_HERO = "npc_dota_hero_axe"                 -- What hero should we force all players to spawn as? (e.g. "npc_dota_hero_axe").  Use nil to allow players to pick their own hero.
+end
 
 MAX_ROUNDS = 4
-INITIAL_ROUND = 1
-TEST_5_HEROES = true
-
 ENABLE_HERO_RESPAWN = false              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = true             -- Should the main shop contain Secret Shop items as well as regular items
 ALLOW_SAME_HERO_SELECTION = false        -- Should we let people select the same hero as each other
@@ -28,7 +30,7 @@ MINIMAP_RUNE_ICON_SIZE = 1              -- What icon size should we use for rune
 RUNE_SPAWN_TIME = 120                   -- How long in seconds should we wait between rune spawns?
 CUSTOM_BUYBACK_COST_ENABLED = true      -- Should we use a custom buyback cost setting?
 CUSTOM_BUYBACK_COOLDOWN_ENABLED = true  -- Should we use a custom buyback time?
-BUYBACK_ENABLED = true                 -- Should we allow people to buyback when they die?
+BUYBACK_ENABLED = false                 -- Should we allow people to buyback when they die?
 
 DISABLE_FOG_OF_WAR_ENTIRELY = true     -- Should we disable fog of war entirely for both teams?
 USE_UNSEEN_FOG_OF_WAR = false           -- Should we make unseen and fogged areas of the map completely black until uncovered by each team?

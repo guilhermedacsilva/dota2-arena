@@ -1,7 +1,7 @@
 function Spawn( entityKeyValues )
     abilityStomp = thisEntity:FindAbilityByName( "ability_boss2_stomp" )
     abilityBH = thisEntity:FindAbilityByName( "ability_boss2_battle_hunger" )
-    thisEntity:SetContextThink( "BossThink", BossThink, 1 )
+    thisEntity:SetContextThink( "BossThink", BossThink, 5 )
 end
 
 function BossThink()

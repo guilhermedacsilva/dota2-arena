@@ -45,6 +45,7 @@ require('events')
 
 require('gameround')
 require('ai/aicore')
+require('ai/ability/boss4_damage_filter')
 
 -- This is a detailed example of many of the containers.lua possibilities, but only activates if you use the provided "playground" map
 if GetMapName() == "playground" then
@@ -136,10 +137,6 @@ function GameMode:OnGameInProgress()
     end)
 --]]
 
-  if TEST_5_HEROES then
-    require("test/test_heroes")
-  end
-
   ENTITY_TOP_LEFT = Entities:FindByName(nil, "top_left")
   ENTITY_TOP_RIGHT = Entities:FindByName(nil, "top_right")
   ENTITY_BOT_LEFT = Entities:FindByName(nil, "bot_left")
@@ -150,6 +147,14 @@ function GameMode:OnGameInProgress()
     ENTITY_BOT_RIGHT,
     ENTITY_BOT_LEFT
   }
+
+  if TEST_5_HEROES then
+    require("test/test_heroes")
+  end
+
+  LinkLuaModifier("modifier_boss4_bees", "ai/ability/modifier_boss4_bees", LUA_MODIFIER_MOTION_NONE )
+  LinkLuaModifier("modifier_boss4_mana", "ai/ability/modifier_boss4_mana", LUA_MODIFIER_MOTION_NONE )
+  LinkLuaModifier("modifier_boss4_spawn", "ai/ability/modifier_boss4_spawn", LUA_MODIFIER_MOTION_NONE )
 
   GameRound:Init()
 end
@@ -177,7 +182,10 @@ function GameMode:DamageFilter( filterTable )
   if filterTable["entindex_attacker_const"] == nil then
     return true
   end
+
   local attacker = EntIndexToHScript( filterTable["entindex_attacker_const"] )
+  Boss4DamageFilter( attacker, filterTable )
+
   if filterTable["damage"] > 0 and attacker ~= nil and attacker:IsRealHero() then
     local heroName = attacker:GetName()
 

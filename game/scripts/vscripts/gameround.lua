@@ -25,7 +25,7 @@ function GameRound:BeginRound()
     local enemy = nil
     for _, unit in pairs( self._roundData[self._round] ) do
         for i=1, unit.qnt do
-            enemy = CreateUnitByName(unit.unitName, Vector(0,640,0), true, nil, nil, DOTA_TEAM_BADGUYS)
+            enemy = CreateUnitByName(unit.unitName, Vector(0,0,128), true, nil, nil, DOTA_TEAM_BADGUYS)
             table.insert(self._enemies, enemy)
         end
     end
@@ -148,7 +148,7 @@ function GameRound:CheckForDefeat()
     end
 
     if bAllPlayersDead then
-        --GameRules:MakeTeamLose( DOTA_TEAM_GOODGUYS )
+        GameRules:MakeTeamLose( DOTA_TEAM_GOODGUYS )
         return
     end
 end

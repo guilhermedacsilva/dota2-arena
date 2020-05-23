@@ -79,12 +79,6 @@
     "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
     "AbilityDamage"         "400 600 800 1000"
 
-    "precache"
-    {
-      "particle"          "particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
-      "soundfile"         "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
-    }
-
     // Item Info
     //-------------------------------------------------------------------------------------------------------------
     "AbilityManaCost"       "300"
@@ -371,7 +365,6 @@
 
     "precache"
     {
-      "soundfile" "soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
       "particle"  "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
       "particle"  "particles/generic_gameplay/generic_stunned.vpcf"
     }
@@ -395,6 +388,7 @@
         "EffectName"    "Hero_Centaur.HoofStomp"
         "Target"      "CASTER"
       }
+
       "ActOnTargets"
       {
         "Target"
@@ -473,7 +467,6 @@
     //-------------------------------------------------------------------------------------------------------------
     "precache"
     {
-      "soundfile"     "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
       "particle"      "particles/units/heroes/hero_axe/axe_battle_hunger.vpcf"
       "particle"      "particles/status_fx/status_effect_battle_hunger.vpcf"
     }
@@ -685,7 +678,6 @@
     {
       "particle"  "particles/units/heroes/hero_death_prophet/death_prophet_silence.vpcf"
       "particle"  "particles/units/heroes/hero_death_prophet/death_prophet_silence_impact.vpcf"
-      "soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
     }
 
     "OnSpellStart"
@@ -884,7 +876,6 @@
 
     "precache"
     {
-      "soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
       "particle"  "particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
       "particle"  "particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
       "particle"  "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
@@ -951,11 +942,7 @@
 
     "precache"
     {
-      //"soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
       "particle"  "particles/econ/items/omniknight/omni_ti8_head/omniknight_repel_buff_ti8.vpcf"
-      //"particle"  "particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
-      //"particle"  "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
-
     }
 
     "Modifiers"
@@ -987,6 +974,50 @@
       }
     }
 
+  }
+
+  "ability_boss4_curse"
+  {
+    "BaseClass"           "ability_lua"
+    "ScriptFile"          "ai/ability/ability_boss4_curse"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityTextureName"      "bane_enfeeble"
+
+    "precache"
+    {
+      "particle"    "particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_initial.vpcf" // caster
+      "particle"    "particles/econ/items/medusa/medusa_daughters/medusa_daughters_mana_shield_b.vpcf" // mana
+      "particle"    "particles/econ/courier/courier_babyroshan_ti9/courier_babyroshan_ti9_ambient.vpcf" // bees
+      "particle"    "particles/econ/courier/courier_faceless_rex/cour_rex_flying.vpcf" // spwan
+    }
+
+    "AbilityCastRange"        "1000"
+    "AbilityCastPoint"        "2.5"
+    "AbilityCastAnimation"      "ACT_DOTA_CHANNEL_ABILITY_4"
+
+    "AbilityCooldown"       "6"
+    "AbilityDuration"       "3"
+    "AbilityManaCost"       "100"
+  }
+
+  "spectre_dispersion_datadriven"
+  {
+    "BaseClass"       "ability_datadriven"
+    "AbilityTextureName"      "spectre_dispersion"
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "SpellImmunityType"     "SPELL_IMMUNITY_ENEMIES_NO"
+
+    "OnCreated"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "ai/ability/ability_boss5_dispersion.lua"
+        "Function"    "ApplyModifier"
+      }
+    }
   }
 
 

@@ -2,7 +2,7 @@ function Spawn( entityKeyValues )
     abilitySilence = thisEntity:FindAbilityByName( "ability_boss3_silence" )
     abilitySummon = thisEntity:FindAbilityByName( "ability_boss3_summom_healer" )
     abilitySummonAuraguy = thisEntity:FindAbilityByName( "ability_boss3_summom_auraguy" )
-    thisEntity:SetContextThink( "BossThink", BossThink, 1 )
+    thisEntity:SetContextThink( "BossThink", BossThink, 5 )
 end
 
 function BossThink()

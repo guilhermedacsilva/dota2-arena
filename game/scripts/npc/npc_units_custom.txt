@@ -419,4 +419,279 @@
     "VisionDaytimeRange"    "8000"
     "VisionNighttimeRange"    "8000"
   }
+
+  "npc_boss_unit_4_bane"
+  {
+    "vscripts"           "ai/bane.lua"
+    "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
+    "Model"           "models/heroes/bane/bane.vmdl"  // Model.
+    "SoundSet"          "Hero_Bane"          // Name of sound set.
+    "Level"           "1"
+    //"UnitLabel"         "healing_ward"
+    "ModelScale"                "1.7"
+
+    "Ability1"          "ability_boss4_curse"     // Ability 1.
+    "Ability2"          ""      // Ability 2.
+    "Ability3"          ""      // Ability 3.
+    "Ability4"          ""      // Ability 4.
+    "Ability5"          ""      // Ability 5.
+    "Ability6"          ""      // Ability 6 - Extra.
+    "Ability7"          ""      // Ability 7 - Extra.
+    "Ability8"          ""      // Ability 8 - Extra.
+
+    "ArmorPhysical"       "3"     // Physical protection.
+    "MagicalResistance"       "-25"     // Magical protection.
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"     // Type of attack - melee, ranged, etc.
+    "AttackDamageMin"     "175"     // Damage range min.
+    "AttackDamageMax"     "175"     // Damage range max.
+    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+    "AttackRate"        "2.5"     // Speed of attack.
+    "AttackAnimationPoint"    "0.3"   // Normalized time in animation cycle to attack.
+    "AttackAcquisitionRange"  "9999"   // Range within a target can be acquired.
+    "AttackRange"       "500"   // Range within a target can be attacked.
+    "ProjectileModel"     "particles/units/heroes/hero_bane/bane_projectile.vpcf" // Particle system model for projectile.
+    "ProjectileSpeed"     "700"   // Speed of projectile.
+
+    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+    "AttributeBaseStrength"   "50"     // Base strength
+    "AttributeStrengthGain"   "0"     // Strength bonus per level.
+    "AttributeBaseIntelligence" "50"     // Base intelligence
+    "AttributeIntelligenceGain" "0"     // Intelligence bonus per level.
+    "AttributeBaseAgility"    "50"     // Base agility
+    "AttributeAgilityGain"    "0"     // Agility bonus per level.
+
+    "StatusHealth"        "13000"     // Base health.
+    "StatusHealthRegen"     "15"     // Health regeneration rate.
+    "StatusMana"        "2000"     // Base mana.
+    "StatusManaRegen"     "25"     // Mana regeneration rate.
+
+    //----------------------------------------------------------------
+    "RingRadius"              "150"
+    "HealthBarOffset"           "300"
+    "BountyXP"          "0"
+    "BountyGoldMin"       "0"
+    "BountyGoldMax"       "0"
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "450"
+    "MovementTurnRate"      "1.0"
+    "FollowRange"       "9999"
+    "BoundsHullName"      "DOTA_HULL_SIZE_HUGE"
+    "TeamName"          "DOTA_TEAM_BADGUYS"
+    "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
+    "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
+    "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    "VisionDaytimeRange"    "8000"
+    "VisionNighttimeRange"    "8000"
+
+    "Creature"
+    {
+        "AttachWearables"
+        {
+            "Wearable1"
+            {
+                "ItemDef"           "503"
+            }
+            "Wearable2"
+            {
+                "ItemDef"           "12715" // head
+            }
+            "Wearable3"
+            {
+                "ItemDef"           "12712" // shoulder
+            }
+            "Wearable3"
+            {
+                "ItemDef"           "12714" // arms
+            }
+            "Wearable3"
+            {
+                "ItemDef"           "12713" // back
+            }
+        }
+    }
+  }
+
+  "npc_boss_unit_4_abaddon"
+  {
+    //"vscripts"           "ai/bane.lua"
+    "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
+    "Model"           "models/heroes/abaddon/abaddon.vmdl"  // Model.
+    "SoundSet"          "Hero_Abaddon"          // Name of sound set.
+    "Level"           "1"
+    //"UnitLabel"         "healing_ward"
+    "ModelScale"                "1"
+
+    "Ability1"          ""     // Ability 1.
+    "Ability2"          ""      // Ability 2.
+    "Ability3"          ""      // Ability 3.
+    "Ability4"          ""      // Ability 4.
+    "Ability5"          ""      // Ability 5.
+    "Ability6"          ""      // Ability 6 - Extra.
+    "Ability7"          ""      // Ability 7 - Extra.
+    "Ability8"          ""      // Ability 8 - Extra.
+
+    "ArmorPhysical"       "3"     // Physical protection.
+    "MagicalResistance"       "-25"     // Magical protection.
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"     // Type of attack - melee, ranged, etc.
+    "AttackDamageMin"     "100"     // Damage range min.
+    "AttackDamageMax"     "100"     // Damage range max.
+    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+    "AttackRate"        "1"     // Speed of attack.
+    "AttackAnimationPoint"    "0.3"   // Normalized time in animation cycle to attack.
+    "AttackAcquisitionRange"  "9999"   // Range within a target can be acquired.
+    "AttackRange"       "250"   // Range within a target can be attacked.
+    "ProjectileModel"     "" // Particle system model for projectile.
+    "ProjectileSpeed"     "700"   // Speed of projectile.
+
+    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+    "AttributeBaseStrength"   "50"     // Base strength
+    "AttributeStrengthGain"   "0"     // Strength bonus per level.
+    "AttributeBaseIntelligence" "50"     // Base intelligence
+    "AttributeIntelligenceGain" "0"     // Intelligence bonus per level.
+    "AttributeBaseAgility"    "50"     // Base agility
+    "AttributeAgilityGain"    "0"     // Agility bonus per level.
+
+    "StatusHealth"        "2000"     // Base health.
+    "StatusHealthRegen"     "5"     // Health regeneration rate.
+    "StatusMana"        "200"     // Base mana.
+    "StatusManaRegen"     "20"     // Mana regeneration rate.
+
+    //----------------------------------------------------------------
+    "RingRadius"              "100"
+    "HealthBarOffset"           "300"
+    "BountyXP"          "0"
+    "BountyGoldMin"       "0"
+    "BountyGoldMax"       "0"
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "450"
+    "MovementTurnRate"      "1.0"
+    "FollowRange"       "9999"
+    "BoundsHullName"      "DOTA_HULL_SIZE_HERO"
+    "TeamName"          "DOTA_TEAM_BADGUYS"
+    "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
+    "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
+    "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    "VisionDaytimeRange"    "8000"
+    "VisionNighttimeRange"    "8000"
+
+    "Creature"
+    {
+        "AttachWearables"
+        {
+            "Wearable1"
+            {
+                "ItemDef"           "6412" // weapon
+            }
+            "Wearable2"
+            {
+                "ItemDef"           "6409" // head
+            }
+            "Wearable3"
+            {
+                "ItemDef"           "6408" // back
+            }
+            "Wearable3"
+            {
+                "ItemDef"           "6411" //shoulder
+            }
+            "Wearable3"
+            {
+                "ItemDef"           "6410" // mount
+            }
+        }
+    }
+  }
+
+
+  "npc_boss_unit_5_shadow_fiend"
+  {
+    //"vscripts"           "ai/bane.lua"
+    "BaseClass"         "npc_dota_creature"  // Class of entity of link to.
+    "Model"           "models/heroes/shadow_fiend/shadow_fiend_arcana.vmdl"  // Model.
+    "SoundSet"          "Hero_Nevermore"          // Name of sound set.
+    "Level"           "1"
+    //"UnitLabel"         "healing_ward"
+    "ModelScale"                "2"
+
+    "Ability1"          "spectre_dispersion_datadriven"     // Ability 1.
+    "Ability2"          ""      // Ability 2.
+    "Ability3"          ""      // Ability 3.
+    "Ability4"          ""      // Ability 4.
+    "Ability5"          ""      // Ability 5.
+    "Ability6"          ""      // Ability 6 - Extra.
+    "Ability7"          ""      // Ability 7 - Extra.
+    "Ability8"          ""      // Ability 8 - Extra.
+
+    "ArmorPhysical"       "4"     // Physical protection.
+    "MagicalResistance"       "-25"     // Magical protection.
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"     // Type of attack - melee, ranged, etc.
+    "AttackDamageMin"     "50"     // Damage range min.
+    "AttackDamageMax"     "50"     // Damage range max.
+    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+    "AttackRate"        "1.5"     // Speed of attack.
+    "AttackAnimationPoint"    "0.5"   // Normalized time in animation cycle to attack.
+    "AttackAcquisitionRange"  "9999"   // Range within a target can be acquired.
+    "AttackRange"       "700"   // Range within a target can be attacked.
+    "ProjectileModel"     "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_base_attack.vpcf" // Particle system model for projectile.
+    "ProjectileSpeed"     "700"   // Speed of projectile.
+
+    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+    "AttributeBaseStrength"   "60"     // Base strength
+    "AttributeStrengthGain"   "0"     // Strength bonus per level.
+    "AttributeBaseIntelligence" "60"     // Base intelligence
+    "AttributeIntelligenceGain" "0"     // Intelligence bonus per level.
+    "AttributeBaseAgility"    "60"     // Base agility
+    "AttributeAgilityGain"    "0"     // Agility bonus per level.
+
+    "StatusHealth"        "20000"     // Base health.
+    "StatusHealthRegen"     "15"     // Health regeneration rate.
+    "StatusMana"        "3000"     // Base mana.
+    "StatusManaRegen"     "75"     // Mana regeneration rate.
+
+    //----------------------------------------------------------------
+    "RingRadius"              "150"
+    "HealthBarOffset"           "300"
+    "BountyXP"          "0"
+    "BountyGoldMin"       "0"
+    "BountyGoldMax"       "0"
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "450"
+    "MovementTurnRate"      "1.0"
+    "FollowRange"       "9999"
+    "BoundsHullName"      "DOTA_HULL_SIZE_HUGE"
+    "TeamName"          "DOTA_TEAM_BADGUYS"
+    "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
+    "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
+    "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    "VisionDaytimeRange"    "8000"
+    "VisionNighttimeRange"    "8000"
+
+    "Creature"
+    {
+        "AttachWearables"
+        {
+            "Wearable1"
+            {
+                "ItemDef"           "6996" // head
+            }
+            "Wearable2"
+            {
+                "ItemDef"           "486" // shoulder
+            }
+            "Wearable3"
+            {
+                "ItemDef"           "488" //arms
+            }
+            "Wearable3"
+            {
+                "ItemDef"           "509" // ambient
+            }
+        }
+    }
+  }
+
+
 }
