@@ -24,22 +24,28 @@ function Precache( context )
   -- Models can also be precached by folder or individually
   -- PrecacheModel should generally used over PrecacheResource for individual models
   PrecacheResource("model_folder", "particles/econ/items/shadow_fiend/sf_fire_arcana", context)
+  PrecacheResource("model", "particles/econ/items/invoker/ti8_invoker_prism_crystal_spellcaster/ti8_invoker_prism_forge_spirit_ambient.vpcf", context)
   PrecacheResource("model", "particles/units/heroes/hero_abaddon/abaddon_weapon_blur.vpcf", context)
   PrecacheResource("model", "particles/econ/items/centaur/centaur_ti9/centaur_double_edge_ti9_bloodspray_src.vpcf", context)
   PrecacheResource("model", "particles/units/heroes/hero_spectre/spectre_dispersion.vpcf", context)
   PrecacheResource("model", "particles/units/heroes/hero_nevermore/nvm_atk_blur.vpcf", context)
   PrecacheResource("model", "particles/units/heroes/hero_nevermore/nvm_atk_blur_b.vpcf", context)
+  PrecacheResource("model", "particles/units/heroes/hero_huskar/huskar_base_attack.vpcf", context)
+  PrecacheResource("model", "particles/units/heroes/hero_winter_wyvern/winter_wyvern_arctic_attack.vpcf", context)
   --PrecacheModel("models/heroes/viper/viper.vmdl", context)
   --PrecacheModel("models/props_gameplay/treasure_chest001.vmdl", context)
   --PrecacheModel("models/props_debris/merchant_debris_chest001.vmdl", context)
   --PrecacheModel("models/props_debris/merchant_debris_chest002.vmdl", context)
 
   -- Sounds can precached here like anything else
+  PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts", context)
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts", context)
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts", context)
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts", context)
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts", context)
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts", context)
+  PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts", context)
+  PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts", context)
 
   -- Entire items can be precached by name
   -- Abilities can also be precached in this way despite the name

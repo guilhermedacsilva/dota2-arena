@@ -1,7 +1,7 @@
 local hPlayer = PlayerResource:GetPlayer(0)
-local goldTotal = 750
+local goldTotal = 1000
 for i = 1, INITIAL_ROUND-1 do
-    goldTotal = goldTotal + 750 + (i - 1) * 200
+    goldTotal = goldTotal + 1000 + i * 150
 end
 local heroList = {}
 local heroItems = {}
@@ -14,9 +14,23 @@ heroItems["0"] = {
     { ["name"] = "item_boots", ["cost"] = 500},
 
     { ["name"] = "item_javelin", ["cost"] = 1100},
-    { ["name"] = "item_mithril_hammer", ["cost"] = 1600}
+    { ["name"] = "item_mithril_hammer", ["cost"] = 1600}, -- maelstrom
+    { ["name"] = "item_hyperstone", ["cost"] = 2000},
+    { ["name"] = "item_recipe_mjollnir", ["cost"] = 900},
+
+    { ["name"] = "item_lifesteal", ["cost"] = 900}, -- mask
+
+    { ["name"] = "item_blades_of_attack", ["cost"] = 450},
+    { ["name"] = "item_broadsword", ["cost"] = 1000},
+    { ["name"] = "item_recipe_lesser_crit", ["cost"] = 700}, -- cristalis
+    { ["name"] = "item_demon_edge", ["cost"] = 2200},
+    { ["name"] = "item_recipe_greater_crit", ["cost"] = 1000}, -- dedalo
+
+    { ["name"] = "item_claymore", ["cost"] = 1400},
+    { ["name"] = "item_reaver", ["cost"] = 3000} -- big axe
+
 }
-heroAbilities["0"] = {0,1,0,2,0,5,0,2}
+heroAbilities["0"] = {0,1,0,2,0,5,0,2,2,2,1,5,1,1}
 --[[
 0 = drow_ranger_frost_arrows
 1 = drow_ranger_wave_of_silence
@@ -41,12 +55,32 @@ heroItems["1"] = {
     { ["name"] = "item_vitality_booster", ["cost"] = 1100},
     { ["name"] = "item_ring_of_health", ["cost"] = 825},
 
+    { ["name"] = "item_sobi_mask", ["cost"] = 225},
+    { ["name"] = "item_recipe_ring_of_basilius", ["cost"] = 200},
+    { ["name"] = "item_ring_of_protection", ["cost"] = 150},
+    { ["name"] = "item_recipe_buckler", ["cost"] = 225},
+
     { ["name"] = "item_cloak", ["cost"] = 550},
     { ["name"] = "item_ring_of_health", ["cost"] = 825},
     { ["name"] = "item_ring_of_regen", ["cost"] = 225},
-    { ["name"] = "item_recipe_hood_of_defiance", ["cost"] = 200}
+    { ["name"] = "item_recipe_hood_of_defiance", ["cost"] = 200},
+
+    { ["name"] = "item_ring_of_tarrasque", ["cost"] = 650},
+    { ["name"] = "item_vitality_booster", ["cost"] = 1100},
+    { ["name"] = "item_reaver", ["cost"] = 3000},
+    { ["name"] = "item_recipe_heart", ["cost"] = 400},
+
+    { ["name"] = "item_ring_of_regen", ["cost"] = 225},
+    { ["name"] = "item_recipe_headdress", ["cost"] = 200},
+    { ["name"] = "item_recipe_pipe", ["cost"] = 1200},
+
+    { ["name"] = "item_helm_of_iron_will", ["cost"] = 925},
+    { ["name"] = "item_recipe_crimson_guard", ["cost"] = 950},
+
+    { ["name"] = "item_lifesteal", ["cost"] = 900}, -- mask
+    { ["name"] = "item_recipe_vladmir", ["cost"] = 600}
 }
-heroAbilities["1"] = {2,0,2,1,2,5,2,0}
+heroAbilities["1"] = {2,0,2,0,2,5,2,0,0,1,1,5,1,1}
 --[[
 0 = axe_berserkers_call
 1 = axe_battle_hunger
@@ -74,9 +108,26 @@ heroItems["2"] = {
 
     { ["name"] = "item_robe", ["cost"] = 450},
     { ["name"] = "item_staff_of_wizardry", ["cost"] = 1000},
-    { ["name"] = "item_recipe_kaya", ["cost"] = 600}
+    { ["name"] = "item_recipe_kaya", ["cost"] = 600},
+
+    { ["name"] = "item_boots_of_elves", ["cost"] = 450},
+    { ["name"] = "item_blade_of_alacrity", ["cost"] = 1000},
+    { ["name"] = "item_recipe_yasha", ["cost"] = 1000},
+
+    { ["name"] = "item_quarterstaff", ["cost"] = 875},
+    { ["name"] = "item_robe", ["cost"] = 450},
+    { ["name"] = "item_sobi_mask", ["cost"] = 225},
+    { ["name"] = "item_quarterstaff", ["cost"] = 875},
+    { ["name"] = "item_robe", ["cost"] = 450},
+    { ["name"] = "item_sobi_mask", ["cost"] = 225},
+    { ["name"] = "item_recipe_orchid", ["cost"] = 775},
+
+    { ["name"] = "item_energy_booster", ["cost"] = 900},
+    { ["name"] = "item_point_booster", ["cost"] = 1200},
+    { ["name"] = "item_vitality_booster", ["cost"] = 1100},
+    { ["name"] = "item_mystic_staff", ["cost"] = 2700}
 }
-heroAbilities["2"] = {1,0,1,0,1,5,1,0,0}
+heroAbilities["2"] = {1,0,1,0,1,5,1,0,0,2,2,5,2,2}
 
 --[[
 0 = lina_dragon_slave
@@ -96,19 +147,36 @@ heroAbilities["2"] = {1,0,1,0,1,5,1,0,0}
 14 = ability_capture
 --]]
 
-hero = CreateHeroForPlayer("npc_dota_hero_sven", hPlayer)
-heroList["3"] = hero
-heroItems["3"] = {
-    { ["name"] = "item_belt_of_strength", ["cost"] = 450},
-    { ["name"] = "item_gloves", ["cost"] = 450},
-    { ["name"] = "item_boots", ["cost"] = 500},
+if DEBUG_QNT_HEROES > 3 then
+    hero = CreateHeroForPlayer("npc_dota_hero_sven", hPlayer)
+    heroList["3"] = hero
+    heroItems["3"] = {
+        { ["name"] = "item_belt_of_strength", ["cost"] = 450},
+        { ["name"] = "item_gloves", ["cost"] = 450},
+        { ["name"] = "item_boots", ["cost"] = 500},
 
-    { ["name"] = "item_ogre_axe", ["cost"] = 1000},
-    { ["name"] = "item_quarterstaff", ["cost"] = 875},
-    { ["name"] = "item_robe", ["cost"] = 450},
-    { ["name"] = "item_sobi_mask", ["cost"] = 225},
-}
-heroAbilities["3"] = {0,2,0,2,0,5,0,2}
+        { ["name"] = "item_ogre_axe", ["cost"] = 1000},
+        { ["name"] = "item_quarterstaff", ["cost"] = 875},
+        { ["name"] = "item_robe", ["cost"] = 450},
+        { ["name"] = "item_sobi_mask", ["cost"] = 225},
+
+        { ["name"] = "item_claymore", ["cost"] = 1400},
+        { ["name"] = "item_lifesteal", ["cost"] = 900}, -- mask
+        { ["name"] = "item_reaver", ["cost"] = 3000}, -- big axe
+
+        { ["name"] = "item_ring_of_tarrasque", ["cost"] = 650},
+        { ["name"] = "item_vitality_booster", ["cost"] = 1100},
+        { ["name"] = "item_reaver", ["cost"] = 3000},
+        { ["name"] = "item_recipe_heart", ["cost"] = 400},
+
+        { ["name"] = "item_blades_of_attack", ["cost"] = 450},
+        { ["name"] = "item_broadsword", ["cost"] = 1000},
+        { ["name"] = "item_recipe_lesser_crit", ["cost"] = 700}, -- cristalis
+        { ["name"] = "item_demon_edge", ["cost"] = 2200},
+        { ["name"] = "item_recipe_greater_crit", ["cost"] = 1000}, -- dedalo
+    }
+    heroAbilities["3"] = {0,2,0,2,0,5,0,2,2,1,1,5,1,1}
+end
 
 --[[
 0 = sven_storm_bolt
@@ -128,24 +196,36 @@ heroAbilities["3"] = {0,2,0,2,0,5,0,2}
 14 = ability_capture
 --]]
 
-hero = CreateHeroForPlayer("npc_dota_hero_silencer", hPlayer)
---hero = CreateHeroForPlayer("npc_dota_hero_necrolyte", Vector(0,-1200,0), true, hPlayer, hPlayer, DOTA_TEAM_GOODGUYS)
-heroList["4"] = hero
-heroItems["4"] = {
-    { ["name"] = "item_belt_of_strength", ["cost"] = 450},
-    { ["name"] = "item_gloves", ["cost"] = 450},
-    { ["name"] = "item_boots", ["cost"] = 500},
+if DEBUG_QNT_HEROES > 4 then
+    hero = CreateHeroForPlayer("npc_dota_hero_silencer", hPlayer)
+    --hero = CreateHeroForPlayer("npc_dota_hero_necrolyte", Vector(0,-1200,0), true, hPlayer, hPlayer, DOTA_TEAM_GOODGUYS)
+    heroList["4"] = hero
+    heroItems["4"] = {
+        { ["name"] = "item_belt_of_strength", ["cost"] = 450},
+        { ["name"] = "item_gloves", ["cost"] = 450},
+        { ["name"] = "item_boots", ["cost"] = 500},
 
-    { ["name"] = "item_quarterstaff", ["cost"] = 875},
-    { ["name"] = "item_robe", ["cost"] = 450},
-    { ["name"] = "item_sobi_mask", ["cost"] = 225},
-    { ["name"] = "item_quarterstaff", ["cost"] = 875},
-    { ["name"] = "item_robe", ["cost"] = 450},
-    { ["name"] = "item_sobi_mask", ["cost"] = 225},
-    { ["name"] = "item_recipe_orchid", ["cost"] = 775}
-}
-heroAbilities["4"] = {0,2,0,2,0,5,0,2,2}
+        { ["name"] = "item_quarterstaff", ["cost"] = 875},
+        { ["name"] = "item_robe", ["cost"] = 450},
+        { ["name"] = "item_sobi_mask", ["cost"] = 225},
+        { ["name"] = "item_quarterstaff", ["cost"] = 875},
+        { ["name"] = "item_robe", ["cost"] = 450},
+        { ["name"] = "item_sobi_mask", ["cost"] = 225},
+        { ["name"] = "item_recipe_orchid", ["cost"] = 775},
 
+        { ["name"] = "item_mystic_staff", ["cost"] = 2700},
+        { ["name"] = "item_ultimate_orb", ["cost"] = 2150},
+        { ["name"] = "item_void_stone", ["cost"] = 825},
+
+        { ["name"] = "item_hyperstone", ["cost"] = 2000},
+        { ["name"] = "item_recipe_bloodthorn", ["cost"] = 1000},
+
+        { ["name"] = "item_ultimate_orb", ["cost"] = 2150},
+        { ["name"] = "item_ultimate_orb", ["cost"] = 2150},
+        { ["name"] = "item_point_booster", ["cost"] = 1200}
+    }
+    heroAbilities["4"] = {0,2,0,2,0,5,0,2,2,1,1,5,1,1}
+end
 --[[
 0 = silencer_curse_of_the_silent
 1 = silencer_glaives_of_wisdom
@@ -183,18 +263,15 @@ for heroKey, hero in pairs(heroList) do
     end
     for i = 1, INITIAL_ROUND do
         local abilityIdx = heroAbilities[heroKey][i]
+        if abilityIdx == nil then
+            break
+        end
         local abilityHandle = hero:GetAbilityByIndex(abilityIdx)
         hero:UpgradeAbility(abilityHandle)
     end
-
-    --[[
-    DebugPrint("ABILITIES == " .. hero:GetUnitName())
-    for i = 0, 14 do
-        DebugPrint(i .. " = " .. hero:GetAbilityByIndex(i):GetAbilityName())
-    end
-    --]]
 end
 
 
 hero = PlayerResource:GetSelectedHeroEntity( 0 )
 hero:SetOrigin(ENTITY_BOT_LEFT:GetOrigin())
+hero:AddItemByName("item_heart")

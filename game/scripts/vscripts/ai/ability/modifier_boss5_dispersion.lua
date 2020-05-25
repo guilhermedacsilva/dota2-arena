@@ -15,7 +15,7 @@ function modifier_boss5_dispersion:OnTakeDamage (event)
         local post_damage = event.damage
         local original_damage = event.original_damage
         local ability = self:GetAbility()
-        local damage_reflect_pct = 0.10
+        local damage_reflect_pct = 0.16
 
         -- NOT Ignore damage
         --if caster:IsAlive() then
@@ -46,7 +46,6 @@ function modifier_boss5_dispersion:OnTakeDamage (event)
 
                 local distance = (vUnit - vCaster):Length2D()
 
-                DebugPrint("Distance: " .. distance)
                 if distance <= 400 then
                     reflect_damage = original_damage * damage_reflect_pct
                 elseif distance <= 800 then -- reduces 20% per 100 distance

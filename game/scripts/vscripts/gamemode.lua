@@ -45,7 +45,6 @@ require('events')
 
 require('gameround')
 require('ai/aicore')
-require('ai/ability/boss4_damage_filter')
 
 -- This is a detailed example of many of the containers.lua possibilities, but only activates if you use the provided "playground" map
 if GetMapName() == "playground" then
@@ -148,7 +147,7 @@ function GameMode:OnGameInProgress()
     ENTITY_BOT_LEFT
   }
 
-  if TEST_5_HEROES then
+  if DEBUG_HEROES then
     require("test/test_heroes")
   end
 
@@ -184,7 +183,6 @@ function GameMode:DamageFilter( filterTable )
   end
 
   local attacker = EntIndexToHScript( filterTable["entindex_attacker_const"] )
-  Boss4DamageFilter( attacker, filterTable )
 
   if filterTable["damage"] > 0 and attacker ~= nil and attacker:IsRealHero() then
     local heroName = attacker:GetName()

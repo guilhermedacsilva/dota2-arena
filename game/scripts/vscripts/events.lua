@@ -236,7 +236,7 @@ function GameMode:OnEntityKilled( keys )
 
   local killedUnit = EntIndexToHScript( keys.entindex_killed )
   if killedUnit and killedUnit:IsRealHero() then
-    if TEST_5_HEROES then
+    if DEBUG_HEROES then
       killedUnit:RespawnUnit()
     else
       local newItem = CreateItem( "item_tombstone", killedUnit, killedUnit )

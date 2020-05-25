@@ -18,6 +18,8 @@
     "ScriptFile"          "libraries/abilities/containers_lua_targeting"
     "MaxLevel"            "1"
     "IsCastableWhileHidden" "1"
+    "AbilitySound"          ""
+    "AbilityCastAnimation"    "ACT_DOTA_CAST_ABILITY_1"
 
     // Casting
     //-------------------------------------------------------------------------------------------------------------
@@ -325,6 +327,75 @@
     "AbilityTextureName"            "rubick_empty1"
   }
 
+  "status_resistance_25"
+  {
+    "BaseClass"       "ability_datadriven"
+    "AbilityTextureName"      "brewmaster_earth_spell_immunity"
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"            "FIELD_INTEGER"
+        "status_resistance"            "25"
+      }
+    }
+    "OnCreated"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "ai/ability/ability_status_resistance.lua"
+        "Function"    "ApplyModifier"
+      }
+    }
+  }
+
+  "status_resistance_50"
+  {
+    "BaseClass"       "ability_datadriven"
+    "AbilityTextureName"      "brewmaster_earth_spell_immunity"
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"            "FIELD_INTEGER"
+        "status_resistance"            "50"
+      }
+    }
+    "OnCreated"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "ai/ability/ability_status_resistance.lua"
+        "Function"    "ApplyModifier"
+      }
+    }
+  }
+
+  "status_resistance_75"
+  {
+    "BaseClass"       "ability_datadriven"
+    "AbilityTextureName"      "brewmaster_earth_spell_immunity"
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"            "FIELD_INTEGER"
+        "status_resistance"            "75"
+      }
+    }
+    "OnCreated"
+    {
+      "RunScript"
+      {
+        "ScriptFile"  "ai/ability/ability_status_resistance.lua"
+        "Function"    "ApplyModifier"
+      }
+    }
+  }
+
   "ability_boss2_stomp"
   {
     // General
@@ -477,11 +548,11 @@
 
     // Time
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "25.0"
+    "AbilityCooldown"       "10.0"
 
     // Damage.
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityDamage"         "50"
+    "AbilityDamage"         "40"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
@@ -502,7 +573,7 @@
       "01"
       {
         "var_type"          "FIELD_FLOAT"
-        "duration"          "10.0"
+        "duration"          "5.0"
       }
       "02"
       {
@@ -538,6 +609,8 @@
           "Radius"        "%radius"
           "Teams"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
           "Types"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+          "MaxTargets"    "2"
+          "Random"        "1"
         }
 
         "Action"
@@ -762,7 +835,7 @@
 
     // Time
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "6"
+    "AbilityCooldown"       "8"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
@@ -772,7 +845,7 @@
     {
       "SpawnUnit"
       {
-        "UnitName"    "npc_boss_unit_3_chameleon2"
+        "UnitName"    "npc_boss_unit_3_healer"
         "Target"
         {
           "Center" "CASTER"
@@ -783,7 +856,39 @@
 
         "Duration"  "60"
         "UnitCount" "1"
-        "UnitLimit" "10"
+        "UnitLimit" "5"
+        "GrantsGold"  "0"
+        "GrantsXP"    "0"
+        "SpawnRadius" "600"
+      }
+    }
+  }
+
+  "ability_boss3_summom_healer_easy"
+  {
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"      "lycan_summon_wolves"
+
+    "AbilityCastPoint"        "0.3"
+    "AbilityCooldown"       "10"
+    "AbilityManaCost"       "150"
+
+    "OnSpellStart"
+    {
+      "SpawnUnit"
+      {
+        "UnitName"    "npc_boss_unit_3_healer_easy"
+        "Target"
+        {
+          "Center" "CASTER"
+          "Radius" "1000"
+          "Random" "1"
+          "MaxTargets" "1"
+        }
+        "Duration"  "60"
+        "UnitCount" "1"
+        "UnitLimit" "5"
         "GrantsGold"  "0"
         "GrantsXP"    "0"
         "SpawnRadius" "600"
@@ -805,7 +910,7 @@
 
     // Time
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "35"
+    "AbilityCooldown"       "32"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
@@ -819,17 +924,60 @@
         "Target"
         {
           "Center" "CASTER"
-          "Radius" "1000"
+          "Radius" "600"
           "Random" "1"
           "MaxTargets" "1"
         }
 
         "Duration"  "60"
         "UnitCount" "1"
-        "UnitLimit" "2"
+        "UnitLimit" "1"
         "GrantsGold"  "0"
         "GrantsXP"    "0"
-        "SpawnRadius" "600"
+        "SpawnRadius" "250"
+      }
+    }
+  }
+
+  "ability_boss3_summom_auraguy_easy"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"      "lycan_summon_wolves"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"        "0.3"
+
+    // Time
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "32"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "150"
+
+    "OnSpellStart"
+    {
+      "SpawnUnit"
+      {
+        "UnitName"    "npc_boss_unit_3_auraguy_easy"
+        "Target"
+        {
+          "Center" "CASTER"
+          "Radius" "600"
+          "Random" "1"
+          "MaxTargets" "1"
+        }
+
+        "Duration"  "60"
+        "UnitCount" "1"
+        "UnitLimit" "1"
+        "GrantsGold"  "0"
+        "GrantsXP"    "0"
+        "SpawnRadius" "250"
       }
     }
   }
@@ -1003,6 +1151,41 @@
     "AbilityManaCost"       "100"
   }
 
+  "ability_boss4_hidden"
+  {
+    "BaseClass"           "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityTextureName"      "bane_enfeeble"
+
+    "OnCreated"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"      "modifier_boss4_hidden"
+        "Target"        "CASTER"
+      }
+    }
+
+    "Modifiers"
+    {
+      "modifier_boss4_hidden"
+      {
+        "Passive" "1"
+        "IsHidden"  "1"
+
+        "OnTakeDamage"
+        {
+          "RunScript"
+          {
+            "ScriptFile"    "ai/ability/modifier_boss4_hidden.lua"
+            "Function"      "OnTakeDamage"
+          }
+        }
+      }
+    }
+  }
+
   "spectre_dispersion_datadriven"
   {
     "BaseClass"       "ability_datadriven"
@@ -1020,5 +1203,929 @@
     }
   }
 
+  "ability_boss5_summom_spirits"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"      "lycan_summon_wolves"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"        "0.3"
+
+    // Time
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "40"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "150"
+
+    "OnSpellStart"
+    {
+      "SpawnUnit"
+      {
+        "UnitName"    "npc_boss_unit_5_spirit1"
+        "Target" "CASTER"
+        "Duration"  "60"
+        "UnitCount" "1"
+        "UnitLimit" "2"
+        "GrantsGold"  "0"
+        "GrantsXP"    "0"
+        "SpawnRadius" "600"
+      }
+      "SpawnUnit"
+      {
+        "UnitName"    "npc_boss_unit_5_spirit2"
+        "Target" "CASTER"
+        "Duration"  "60"
+        "UnitCount" "1"
+        "UnitLimit" "2"
+        "GrantsGold"  "0"
+        "GrantsXP"    "0"
+        "SpawnRadius" "600"
+      }
+      "SpawnUnit"
+      {
+        "UnitName"    "npc_boss_unit_5_spirit3"
+        "Target" "CASTER"
+        "Duration"  "60"
+        "UnitCount" "1"
+        "UnitLimit" "2"
+        "GrantsGold"  "0"
+        "GrantsXP"    "0"
+        "SpawnRadius" "600"
+      }
+    }
+  }
+
+  "ability_boss5_summom_spirits_easy"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"      "lycan_summon_wolves"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"        "0.3"
+
+    // Time
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "40"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "150"
+
+    "OnSpellStart"
+    {
+      "SpawnUnit"
+      {
+        "UnitName"    "npc_boss_unit_5_spirit1_easy"
+        "Target" "CASTER"
+        "Duration"  "60"
+        "UnitCount" "1"
+        "UnitLimit" "2"
+        "GrantsGold"  "0"
+        "GrantsXP"    "0"
+        "SpawnRadius" "600"
+      }
+      "SpawnUnit"
+      {
+        "UnitName"    "npc_boss_unit_5_spirit2_easy"
+        "Target" "CASTER"
+        "Duration"  "60"
+        "UnitCount" "1"
+        "UnitLimit" "2"
+        "GrantsGold"  "0"
+        "GrantsXP"    "0"
+        "SpawnRadius" "600"
+      }
+      "SpawnUnit"
+      {
+        "UnitName"    "npc_boss_unit_5_spirit3_easy"
+        "Target" "CASTER"
+        "Duration"  "60"
+        "UnitCount" "1"
+        "UnitLimit" "2"
+        "GrantsGold"  "0"
+        "GrantsXP"    "0"
+        "SpawnRadius" "600"
+      }
+    }
+  }
+
+  "ability_boss5_manabreak"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityTextureName"      "antimage_mana_break"
+
+    // Precache
+    //-------------------------------------------------------------------------------------------------------------
+    "precache"
+    {
+      "particle"  "particles/generic_gameplay/generic_manaburn.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+    }
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"        "FIELD_FLOAT"
+        "damage_per_burn"   "0"
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "mana_per_hit"      "25"
+      }
+    }
+
+    "Modifiers"
+    {
+      "modifier_mana_break_orb_datadriven"
+      {
+        "Passive" "1"
+        "IsHidden"  "1"
+
+        "Orb"
+        {
+          "Priority"  "DOTA_ORB_PRIORITY_ABILITY"
+        }
+
+        "OnOrbImpact"
+        {
+          "FireSound"
+          {
+            "EffectName"  "Hero_Antimage.ManaBreak"
+            "Target"
+            {
+              "Center"  "TARGET"
+              "Flags"   "DOTA_UNIT_TARGET_FLAG_MANA_ONLY"
+            }
+          }
+
+          "FireEffect"
+          {
+            "EffectName"  "particles/generic_gameplay/generic_manaburn.vpcf"
+            "EffectAttachType"  "attach_hitloc"
+            "Target"
+            {
+              "Center"  "TARGET"
+              "Flags"   "DOTA_UNIT_TARGET_FLAG_MANA_ONLY"
+            }
+          }
+
+          "RunScript"
+          {
+            "ScriptFile"  "ai/ability/ability_boss5_manabreak.lua"
+            "Function"    "ManaBreak"
+            "Target"
+            {
+              "Center"  "TARGET"
+              "Flags"   "DOTA_UNIT_TARGET_FLAG_MANA_ONLY"
+            }
+          }
+        }
+      }
+    }
+  }
+
+  "ability_boss5_melting_strike"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+    "MaxLevel"            "1"
+    "AbilityTextureName"      "forged_spirit_melting_strike"
+
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "40"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "armor_removed"     "1"
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "max_armor_removed"   "10"
+      }
+      "03"
+      {
+        "var_type"        "FIELD_FLOAT"
+        "duration"        "25"
+      }
+      // Extra
+      "04"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "mana_cost"       "40"
+      }
+    }
+
+    "Modifiers"
+    {
+      "modifier_melting_strike_datadriven"
+      {
+        "Passive"   "1"
+        "IsHidden"    "1"
+
+        "OnAttackLanded"
+        // "%attack_damage" is set to the damage value before mitigation
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "ai/ability/ability_boss5_melting_strike.lua"
+            "Function"    "MeltingStrike"
+            "modifier_armor"  "modifier_melting_strike_armor_datadriven"
+          }
+        }
+      }
+
+      "modifier_melting_strike_armor_datadriven"
+      {
+        "IsHidden"    "0"
+        "IsPurgable"  "1"
+        "IsDebuff"    "1"
+        "EffectName"  "particles/econ/items/invoker/ti8_invoker_prism_crystal_spellcaster/ti8_invoker_prism_forge_spirit_ambient.vpcf"
+        "EffectAttachType"  "follow_overhead"
+
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-1"
+        }
+      }
+    }
+  }
+
+  "ability_boss5_damage_reduction"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+    "MaxLevel"            "1"
+    "AbilityTextureName"      "bane_enfeeble"
+
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "40"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "damage_removed"     "4"
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "max_damage_removed"     "150"
+      }
+      "03"
+      {
+        "var_type"        "FIELD_FLOAT"
+        "duration"        "15"
+      }
+      "04"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "mana_cost"       "40"
+      }
+    }
+
+    "Modifiers"
+    {
+      "modifier_damage_reduction"
+      {
+        "Passive"   "1"
+        "IsHidden"    "1"
+
+        "OnAttackLanded"
+        {
+          "RunScript"
+          {
+            "ScriptFile"  "ai/ability/ability_boss5_damage_reduction.lua"
+            "Function"    "DamageReduction"
+            "modifier_name"  "modifier_damage_reduction_datadriven"
+          }
+        }
+      }
+
+      "modifier_damage_reduction_datadriven"
+      {
+        "IsHidden"    "0"
+        "IsPurgable"  "1"
+        "IsDebuff"    "1"
+        "EffectName"  "particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+        "EffectAttachType"  "follow_overhead"
+
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "-1"
+        }
+      }
+    }
+  }
+
+  "ability_boss5_fire"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
+    "AbilityTextureName"      "wisp_spirits"
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"        "0"
+
+    // Time
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "9999"
+    "AbilityDuration"       "9999"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "150"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "damage"        "99999"
+      }
+      "02"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "min_range"         "100"
+      }
+      "03"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "max_range"         "875"
+      }
+      "04"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "hit_radius"        "150"
+      }
+      "05"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "default_radius"      "600"
+      }
+      "06"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "spirit_movement_rate"    "100" // in and out
+      }
+      "07"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "num_spirits"       "2"
+      }
+      "08"
+      {
+        "var_type"          "FIELD_FLOAT"
+        "spirit_summon_interval"  "1"
+      }
+      "09"
+      {
+        "var_type"          "FIELD_FLOAT"
+        "spirit_turn_rate"      "25"
+      }
+      "10"
+      {
+        "var_type"          "FIELD_FLOAT"
+        "think_interval"      "0.03"
+      }
+    }
+
+    "precache"
+    {
+      "particle"          "particles/econ/courier/courier_roshan_lava/courier_roshan_lava.vpcf"
+      "particle"          "particles/addons_gameplay/pit_lava_sparks.vpcf"
+    }
+
+    "OnSpellStart"
+    {
+      "RemoveModifier"
+      {
+        "ModifierName"      "modifier_spirits_caster_datadriven"
+        "Target"        "CASTER"
+      }
+
+      "ApplyModifier"
+      {
+        "ModifierName"      "modifier_spirits_caster_datadriven"
+        "Target"        "CASTER"
+      }
+    }
+
+    "Modifiers"
+    {
+      "modifier_spirits_caster_datadriven"
+      {
+        "OnCreated"
+        {
+          "RunScript"
+          {
+            "ScriptFile"    "ai/ability/ability_boss5_fire.lua"
+            "Function"      "CastSpirits"
+
+            "default_radius"  "%default_radius"
+          }
+        }
+
+        "ThinkInterval"   "%think_interval"
+        "OnIntervalThink"
+        {
+          "RunScript"
+          {
+            "ScriptFile"    "ai/ability/ability_boss5_fire.lua"
+            "Function"      "ThinkSpirits"
+
+            "think_interval"      "%think_interval"
+
+            "num_spirits"       "%num_spirits"
+            "spirit_summon_interval"  "%spirit_summon_interval"
+            "spirit_turn_rate"      "%spirit_turn_rate"
+
+            "min_range"         "%min_range"
+            "max_range"         "%max_range"
+            "spirit_movement_rate"    "%spirit_movement_rate"
+
+            "caster_modifier"     "modifier_spirits_caster_datadriven"
+
+            "spirit_particle_name"    "particles/econ/courier/courier_roshan_lava/courier_roshan_lava.vpcf"
+            "spirit_modifier"     "modifier_boss5_lava_core"
+          }
+        }
+
+        "OnDestroy"
+        {
+          "RunScript"
+          {
+            "ScriptFile"    "ai/ability/ability_boss5_fire.lua"
+            "Function"      "EndSpirits"
+
+            "spirit_modifier" "modifier_boss5_lava_core"
+          }
+
+          "RunScript"
+          {
+            "ScriptFile"    "ai/ability/ability_boss5_fire.lua"
+            "Function"      "StopSound"
+            "sound_name"    "Hero_Wisp.Spirits.Loop"
+          }
+        }
+      }
+
+      "modifier_boss5_lava_core"
+      {
+        "Aura"      "modifier_boss5_lava_damage_aura"
+        "Aura_Radius" "%hit_radius"
+        "Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "Aura_Types"  "DOTA_UNIT_TARGET_ALL"
+
+        "OnDestroy"
+        {
+          "RunScript"
+          {
+            "ScriptFile"    "ai/ability/ability_boss5_fire.lua"
+            "Function"      "OnDestroySpirit"
+            "Target"      "TARGET"
+          }
+        }
+
+        "States"
+        {
+          "MODIFIER_STATE_INVULNERABLE"     "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NO_UNIT_COLLISION"    "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NOT_ON_MINIMAP"     "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_UNSELECTABLE"     "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+
+      "modifier_boss5_lava_damage_aura"
+      {
+        "Duration"  "0.03"
+        "IsHidden"  "1"
+
+        "OnCreated"
+        {
+          "FireSound"
+          {
+            "EffectName"    "Hero_Wisp.Spirits.TargetCreep"
+            "Target"      "TARGET"
+          }
+
+          "FireEffect"
+          {
+            "EffectName"    "particles/addons_gameplay/pit_lava_sparks.vpcf"
+            "EffectAttachType"  "attach_origin"
+            "Target"      "TARGET"
+          }
+
+          "Damage"
+          {
+            "Target"    "TARGET"
+            "Type"      "DAMAGE_TYPE_PURE"
+            "Damage"    "%damage"
+          }
+        }
+      }
+    }
+
+  }
+
+  "ability_boss6_burning_spear"
+  {
+      "BaseClass"                     "ability_datadriven"
+      "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+      "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+      "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+      "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+      "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+      "AbilityTextureName"            "huskar_burning_spear"
+
+      "AbilityCastRange"              "600"
+      "AbilityCastPoint"              "0"
+      "AbilityCooldown"               "0"
+      "AbilityDuration"               "8"
+      "AbilityDamage"                 "20"
+      "AbilityManaCost"               "0"
+
+      "AbilitySpecial"
+      {
+          "01"
+          {
+              "var_type"              "FIELD_INTEGER"
+              "health_cost"           "0"
+          }
+      }
+
+      "precache"
+      {
+          "soundfile" "soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
+          "particle"  "particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf"
+          "particle"  "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf"
+      }
+
+      "Modifiers"
+      {
+          // Modifier to handle OrbEffect-Behaviour
+          "modifier_burning_spear_datadriven"
+          {
+              // Will always stay on the caster once the ability is upgraded
+              // Hidden
+              "Passive"           "1"
+              "IsHidden"          "1"
+              "IsBuff"            "0"
+              "IsDebuff"          "0"
+              "IsPurgable"        "0"
+
+              // OrbEffect-Behaviour
+              "Orb"
+              {
+                  "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
+                  "ProjectileName"    "particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf"
+                  "CastAttack"        "1"
+              }
+
+              // HealthCost is handled here
+              "OnOrbFire"
+              {
+                  "FireSound"
+                  {
+                      "EffectName"    "Hero_Huskar.Burning_Spear.Cast"
+                      "Target"        "CASTER"
+                  }
+
+                  "RunScript"
+                  {
+                      "ScriptFile"    "ai/ability/ability_boss6_burning_spear.lua"
+                      "Function"      "DoHealthCost"
+                  }
+              }
+
+              // Apply the hidden dot modifier to the target here
+              // Call IncreaseStackCount to keep stack count on modifier_burning_spear_datadriven_debuff_counter updated
+              "OnOrbImpact"
+              {
+                  "FireSound"
+                  {
+                      "EffectName"    "Hero_Huskar.Burning_Spear"
+                      "Target"        "TARGET"
+                  }
+
+                  "ApplyModifier"
+                  {
+                      "ModifierName"  "modifier_burning_spear_datadriven_debuff"
+                      "Target"        "TARGET"
+                  }
+
+                  "RunScript"
+                  {
+                      "ScriptFile"    "ai/ability/ability_boss6_burning_spear.lua"
+                      "Function"      "IncreaseStackCount"
+
+                      "modifier_counter_name"     "modifier_burning_spear_datadriven_debuff_counter"
+                  }
+              }
+          }
+
+          // Modifier to show stack count
+          // Only visual
+          "modifier_burning_spear_datadriven_debuff_counter"
+          {
+              "Passive"           "0"
+              "IsHidden"          "0"
+              "IsBuff"            "0"
+              "IsDebuff"          "1"
+              "IsPurgable"        "0"
+          }
+
+          // Modifier to handle the dot
+          "modifier_burning_spear_datadriven_debuff"
+          {
+              "Passive"           "0"
+              "IsHidden"          "1"
+              "IsBuff"            "0"
+              "IsDebuff"          "1"
+              "IsPurgable"        "0"
+              "Duration"          "%AbilityDuration"
+
+              // Allow multiple instances of this modifier on the target
+              // Modifiers stack additivly (dmg) with independent durations
+              "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+              "EffectName"        "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf"
+              "EffectAttachType"  "follow_origin"
+
+              "ThinkInterval"  "1.0"
+              "OnIntervalThink"
+              {
+                  // Damage of %AbilityDamage every %ThinkInterval seconds
+                  "Damage"
+                  {
+                      "Target"        "TARGET"
+                      "Type"          "DAMAGE_TYPE_MAGICAL"
+                      "Damage"        "%AbilityDamage"
+                  }
+              }
+
+              // Updating visual modifier's stack count
+              "OnDestroy"
+              {
+                  "RunScript"
+                  {
+                      "ScriptFile"    "ai/ability/ability_boss6_burning_spear.lua"
+                      "Function"      "DecreaseStackCount"
+
+                      "modifier_counter_name"     "modifier_burning_spear_datadriven_debuff_counter"
+                  }
+              }
+          }
+      }
+  }
+
+  "ability_boss6_life_break"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"           "ability_datadriven"
+    "AbilityType"         "DOTA_ABILITY_TYPE_ULTIMATE"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+    "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
+    "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_YES"
+    "FightRecapLevel"       "2"
+    "AbilityTextureName"      "huskar_life_break"
+
+    "AbilityCastPoint"        "0.3"
+    "AbilityCooldown"       "12"
+    "AbilityManaCost"       "0"
+    "AbilityCastRange"        "9999"
+    "AbilityDuration"       "4"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "health_cost_percent"       "0"
+      }
+      "02"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "health_damage"           "0.5"
+      }
+      "03"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "health_damage_scepter"       "0.65"
+      }
+      "04"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "charge_speed"            "1000"
+      }
+      "05"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "tooltip_health_damage"       "50"
+      }
+      "06"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "tooltip_health_cost_percent"   "50"
+      }
+      "07"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "movespeed_slow"          "-40"
+      }
+      "08"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "slow_duration_tooltip"       "4"
+      }
+      "09"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "tooltip_health_damage_scepter"   "65"
+      }
+      "10"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "Costoldown_scepter"        "4"
+      }
+      "11"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "max_distance"            "9999"
+      }
+    }
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_huskar/huskar_life_break.vpcf"
+      "particle"  "particles/units/heroes/hero_huskar/huskar_life_break_cast.vpcf"
+      "particles" "particles/status_fx/status_effect_huskar_lifebreak.vpcf"
+    }
+
+    "OnSpellStart"
+    {
+      "ApplyModifier"
+      {
+        "ModifierName"  "modifier_huskar_life_break_datadriven"
+        "Target"    "CASTER"
+        "Duration"    "1"
+      }
+
+      "RunScript"
+      {
+        "ScriptFile"  "ai/ability/ability_boss6_life_break.lua"
+        "Function"    "LifeBreak"
+        "ModifierName"      "modifier_huskar_life_break_datadriven"
+          "ModifierName_Debuff" "modifier_huskar_life_break_datadriven_debuff"
+      }
+
+      "FireSound"
+      {
+        "EffectName"  "Hero_Huskar.Life_Break"
+        "Target"    "CASTER"
+      }
+
+      "FireEffect"
+      {
+        "EffectName"        "particles/units/heroes/hero_huskar/huskar_life_break_cast.vpcf"
+        "EffectAttachType"  "follow_origin"
+        "Target"            "CASTER"
+      }
+
+      "ApplyMotionController"
+      // For this: gfycat.com/BraveHideousGiantschnauzer -> check: bit.ly/1KWulqA
+      {
+        "Target"    "CASTER"
+          "ScriptFile"    "ai/ability/ability_boss6_life_break.lua"
+          "HorizontalControlFunction" "JumpHorizonal"
+          "VerticalControlFunction"   "JumpVertical"
+      }
+    }
+
+    "Modifiers"
+    {
+      "modifier_huskar_life_break_datadriven"
+      {
+        "Passive"     "0"
+        "IsHidden"      "1"
+        "IsDebuff"      "0"
+        "Duration"      "1"
+
+        "States"
+        {
+          "MODIFIER_STATE_DISARMED"   "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+
+      "modifier_huskar_life_break_datadriven_debuff"
+      {
+        "Passive"     "0"
+        "IsHidden"      "0"
+        "IsDebuff"      "1"
+        "Duration"      "%AbilityDuration"
+
+        "StatusEffectName"    "particles/status_fx/status_effect_huskar_lifebreak.vpcf"
+        "StatusEffectPriority"  "15"  //What this
+
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movespeed_slow"
+        }
+      }
+    }
+  }
+
+  "ability_boss10_aura"
+  {
+    "BaseClass"       "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+    "AbilityTextureName"      "dragon_knight_dragon_blood"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "bonus_armor"        "5"
+      }
+      "02"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "bonus_magic_resistance"         "25"
+      }
+    }
+
+    "Modifiers"
+    {
+      "ability_boss10_aura_Modifier"
+      {
+        "Passive" "1"
+        "IsHidden" "1"
+        "Aura" "ability_boss10_aura_bonus"
+        "Aura_Radius" "9999"
+        "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "Aura_Types" "DOTA_UNIT_TARGET_ALL"
+      }
+
+      "ability_boss10_aura_bonus"
+      {
+        "IsDebuff" "0"
+        "IsPurgable" "0"
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%bonus_armor"
+          "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%bonus_magic_resistance"
+        }
+      }
+    }
+  }
 
 }

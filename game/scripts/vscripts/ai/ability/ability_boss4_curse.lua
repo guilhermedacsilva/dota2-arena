@@ -41,11 +41,12 @@ function ability_boss4_curse:OnSpellStart()
         "modifier_boss4_bees",
         "modifier_boss4_mana",
         "modifier_boss4_spawn",
+        "modifier_boss4_spawn",
     }
 
     for _, unit in pairs(enemies) do
-        if (RandomInt(1,2) == 1) then
-            unit:AddNewModifier(self:GetCaster(), self, mods[RandomInt(1,3)], {duration = self:GetDuration()} )
+        if (RandomInt(1,10) <= 6) then
+            unit:AddNewModifier(self:GetCaster(), self, mods[RandomInt(1,4)], {duration = self:GetDuration()} )
         end
     end
 end

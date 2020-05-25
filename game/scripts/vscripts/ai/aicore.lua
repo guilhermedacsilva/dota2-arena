@@ -1,11 +1,85 @@
 if AICore == nil then
     AICore = class({})
+    AICore.spells = {}
+end
+
+-- COOLDOWN --------------------------------------------------
+
+function AICore:ResetCooldownTable()
+    AICore.spells = {}
+end
+
+function AICore:AddCooldown(ability, time)
+  table.insert(AICore.spells, {
+    ability = ability,
+    cooldown = time,
+    gametime = GameRules:GetGameTime() + time
+  })
+end
+
+function AICore:VerifyCooldowns()
+  for _, abi in pairs(AICore.spells) do
+    if (GameRules:GetGameTime() >= abi.gametime) then
+      abi.ability:EndCooldown()
+    end
+  end
+end
+
+function AICore:StartCooldown(ability)
+  for _, abi in pairs(AICore.spells) do
+    if (abi.ability == ability) then
+      abi.gametime = GameRules:GetGameTime() + abi.cooldown
+      break
+    end
+  end
+end
+
+-- CAST --------------------------------------------------
+
+function AICore:FindAbility(entity, abilityName)
+  local ability = entity:FindAbilityByName( abilityName )
+  if ability == nil then
+    return entity:FindAbilityByName( abilityName .. "_easy" )
+  end
+  return ability
 end
 
 function AICore:CastAbilityNoTarget(entity, ability)
     ExecuteOrderFromTable({
       UnitIndex = entity:entindex(),
       OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+      AbilityIndex = ability:entindex(),
+      Queue = false
+    })
+end
+
+function AICore:CastAbilityTarget(entity, ability, target)
+    ExecuteOrderFromTable({
+      UnitIndex = entity:entindex(),
+      TargetIndex = target:entindex(),
+      OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+      AbilityIndex = ability:entindex(),
+      Queue = false
+    })
+end
+
+function AICore:CastAbilityTargetLessHP(entity, ability)
+    target = AICore:BotFindEnemiesLessHP(entity:GetOrigin(), 9999)
+    ExecuteOrderFromTable({
+      UnitIndex = entity:entindex(),
+      TargetIndex = target:entindex(),
+      OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+      AbilityIndex = ability:entindex(),
+      Queue = false
+    })
+end
+
+function AICore:CastAbilityTargetMoreHP(entity, ability)
+    target = AICore:BotFindEnemiesMoreHP(entity:GetOrigin(), 9999)
+    ExecuteOrderFromTable({
+      UnitIndex = entity:entindex(),
+      TargetIndex = target:entindex(),
+      OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
       AbilityIndex = ability:entindex(),
       Queue = false
     })
@@ -30,6 +104,8 @@ function AICore:Move(entity, position)
     })
 end
 
+-- FIND ENEMIES --------------------------------------------------
+
 function AICore:BotFindEnemies(origin, radius)
     return FindUnitsInRadius(DOTA_TEAM_BADGUYS,
                               origin,
@@ -40,4 +116,55 @@ function AICore:BotFindEnemies(origin, radius)
                               DOTA_UNIT_TARGET_FLAG_NONE,
                               FIND_ANY_ORDER,
                               false)
+end
+
+function AICore:BotFindRandomEnemy()
+    local enemies = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+                              Vector(0,0,0),
+                              nil,
+                              9999,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_FLAG_NONE,
+                              FIND_ANY_ORDER,
+                              false)
+    return enemies[RandomInt(1,#enemies)]
+end
+
+function AICore:BotFindEnemiesLessHP(origin, radius)
+    local enemies = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+                              origin,
+                              nil,
+                              radius,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_FLAG_NONE,
+                              FIND_ANY_ORDER,
+                              false)
+    local enemy = enemies[1]
+    for _, unit in pairs (enemies) do
+        if unit:GetHealth() < enemy:GetHealth() then
+            enemy = unit
+        end
+    end
+    return enemy
+end
+
+function AICore:BotFindEnemiesMoreHP(origin, radius)
+    local enemies = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+                              origin,
+                              nil,
+                              radius,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_FLAG_NONE,
+                              FIND_ANY_ORDER,
+                              false)
+    local enemy = enemies[1]
+    for _, unit in pairs (enemies) do
+        if unit:GetHealth() > enemy:GetHealth() then
+            enemy = unit
+        end
+    end
+    return enemy
 end

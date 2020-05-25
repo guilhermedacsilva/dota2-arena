@@ -11,7 +11,7 @@ function BossThink()
 
     units = AICore:BotFindEnemies(thisEntity:GetOrigin(), abilityStomp:GetSpecialValueFor('radius'))
 
-    if abilityBH:IsFullyCastable() and thisEntity:GetHealthPercent() < 50 then
+    if abilityBH:IsFullyCastable() and thisEntity:GetHealthPercent() < 75 then
         AICore:CastAbilityNoTarget(thisEntity, abilityBH)
     elseif abilityStomp:IsFullyCastable() and #units > 0 then
         AICore:CastAbilityNoTarget(thisEntity, abilityStomp)

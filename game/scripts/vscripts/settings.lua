@@ -1,13 +1,17 @@
 -- In this file you can set up all the properties and settings for your game mode.
 
-TEST_5_HEROES = true
-INITIAL_ROUND = 5
+DEBUG_HEROES = true
+DEBUG_QNT_HEROES = 5
+INITIAL_ROUND = 10
+MAX_ROUNDS = 10
 
-if TEST_5_HEROES then
+if DEBUG_HEROES then
     FORCE_PICKED_HERO = "npc_dota_hero_axe"                 -- What hero should we force all players to spawn as? (e.g. "npc_dota_hero_axe").  Use nil to allow players to pick their own hero.
+else
+    INITIAL_ROUND = 1
 end
 
-MAX_ROUNDS = 4
+GAME_DIFFICULT = 1
 ENABLE_HERO_RESPAWN = false              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = true             -- Should the main shop contain Secret Shop items as well as regular items
 ALLOW_SAME_HERO_SELECTION = false        -- Should we let people select the same hero as each other
@@ -75,7 +79,11 @@ MINIMUM_ATTACK_SPEED = 20               -- What should we use for the minimum at
 
 GAME_END_DELAY = -1                     -- How long should we wait after the game winner is set to display the victory banner and End Screen?  Use -1 to keep the default (about 10 seconds)
 VICTORY_MESSAGE_DURATION = 3            -- How long should we wait after the victory message displays to show the End Screen?  Use
-STARTING_GOLD = 1000                     -- How much starting gold should we give to each player?
+if DEBUG_HEROES then
+    STARTING_GOLD = 99999                     -- How much starting gold should we give to each player?
+else
+    STARTING_GOLD = 1000
+end
 DISABLE_DAY_NIGHT_CYCLE = false         -- Should we disable the day night cycle from naturally occurring? (Manual adjustment still possible)
 DISABLE_KILLING_SPREE_ANNOUNCER = true -- Shuold we disable the killing spree announcer?
 DISABLE_STICKY_ITEM = false             -- Should we disable the sticky item button in the quick buy area?

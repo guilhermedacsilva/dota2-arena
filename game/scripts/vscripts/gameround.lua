@@ -4,6 +4,22 @@ end
 
 
 function GameRound:Init()
+    local qntPlayers = 0
+
+    if DEBUG_HEROES then
+        qntPlayers = DEBUG_QNT_HEROES
+    else
+        for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+            if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:HasSelectedHero( nPlayerID ) then
+                qntPlayers = qntPlayers + 1
+            end
+        end
+    end
+
+    if qntPlayers == 5 then
+        GAME_DIFFICULT = 2
+    end
+
     self._round = INITIAL_ROUND
     self._roundEnded = false
     self._nextRoundStartTime = 0
@@ -15,15 +31,16 @@ end
 
 function GameRound:BeginRound()
     self:RefreshAllUnits()
+    AICore:ResetCooldownTable()
 
     Notifications:TopToAll({
-        text = self._roundData[self._round][1].msg,
+        text = self._roundData[GAME_DIFFICULT][self._round][1].msg,
         duration = 7.0
     })
 
     self._enemies = {}
     local enemy = nil
-    for _, unit in pairs( self._roundData[self._round] ) do
+    for _, unit in pairs( self._roundData[GAME_DIFFICULT][self._round] ) do
         for i=1, unit.qnt do
             enemy = CreateUnitByName(unit.unitName, Vector(0,0,128), true, nil, nil, DOTA_TEAM_BADGUYS)
             table.insert(self._enemies, enemy)
@@ -69,6 +86,7 @@ end
 
 function GameRound:OnThink()
     if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        self:GiveTickGoldToPlayers()
         self:CheckForDefeat()
 
         if self._nextRoundStartTime ~= 0 and GameRules:GetGameTime() >= self._nextRoundStartTime then
@@ -79,6 +97,7 @@ function GameRound:OnThink()
             self._roundEnded = false
             self:End()
             self:RefreshPlayers()
+            self:KillAllEnemies()
 
             self._round = self._round + 1
             if self._round > MAX_ROUNDS then
@@ -94,6 +113,21 @@ function GameRound:OnThink()
     return 1
 end
 
+function GameRound:KillAllEnemies()
+    local units = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
+                  Vector(0,0,0),
+                  nil,
+                  9999,
+                  DOTA_UNIT_TARGET_TEAM_ENEMY,
+                  DOTA_UNIT_TARGET_ALL,
+                  DOTA_UNIT_TARGET_FLAG_NONE,
+                  FIND_UNITS_EVERYWHERE,
+                  false)
+    for _, unit in pairs(units) do
+        unit:ForceKill(false)
+    end
+end
+
 function GameRound:RefreshPlayers()
     for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
         if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:HasSelectedHero( nPlayerID ) then
@@ -105,7 +139,7 @@ function GameRound:RefreshPlayers()
             hero:SetHealth( hero:GetMaxHealth() )
             hero:SetMana( hero:GetMaxMana() )
             hero:HeroLevelUp(true)
-            hero:ModifyGold(750 + (self._round - 1) * 200, true, 0)
+            hero:ModifyGold(1000 + self._round * 150, true, 0)
         end
     end
     self:RefreshAllUnits()
@@ -129,7 +163,7 @@ end
 
 
 function GameRound:CheckForDefeat()
-    if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS or TEST_5_HEROES then
+    if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS or DEBUG_HEROES then
         return
     end
 
@@ -150,5 +184,11 @@ function GameRound:CheckForDefeat()
     if bAllPlayersDead then
         GameRules:MakeTeamLose( DOTA_TEAM_GOODGUYS )
         return
+    end
+end
+
+function GameRound:GiveTickGoldToPlayers()
+    for nPlayerID = 0, 4 do
+        PlayerResource:ModifyGold(nPlayerID, 1, true, 0)
     end
 end
