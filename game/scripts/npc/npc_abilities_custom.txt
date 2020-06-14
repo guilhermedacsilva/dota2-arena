@@ -548,7 +548,7 @@
 
     // Time
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "10.0"
+    "AbilityCooldown"       "20.0"
 
     // Damage.
     //-------------------------------------------------------------------------------------------------------------
@@ -722,8 +722,8 @@
 
     // Time
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "8"
-    "AbilityDuration"       "3.0"
+    "AbilityCooldown"       "11"
+    "AbilityDuration"       "2.0"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
@@ -738,12 +738,12 @@
       "01"
       {
         "var_type"          "FIELD_INTEGER"
-        "radius"          "500"
+        "radius"          "300"
       }
       "02"
       {
         "var_type"          "FIELD_FLOAT"
-        "duration"          "3.0"
+        "duration"          "2.0"
       }
     }
 
@@ -835,11 +835,11 @@
 
     // Time
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "8"
+    "AbilityCooldown"       "15"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"       "150"
+    "AbilityManaCost"       "100"
 
     "OnSpellStart"
     {
@@ -856,39 +856,7 @@
 
         "Duration"  "60"
         "UnitCount" "1"
-        "UnitLimit" "5"
-        "GrantsGold"  "0"
-        "GrantsXP"    "0"
-        "SpawnRadius" "600"
-      }
-    }
-  }
-
-  "ability_boss3_summom_healer_easy"
-  {
-    "BaseClass"       "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-    "AbilityTextureName"      "lycan_summon_wolves"
-
-    "AbilityCastPoint"        "0.3"
-    "AbilityCooldown"       "10"
-    "AbilityManaCost"       "150"
-
-    "OnSpellStart"
-    {
-      "SpawnUnit"
-      {
-        "UnitName"    "npc_boss_unit_3_healer_easy"
-        "Target"
-        {
-          "Center" "CASTER"
-          "Radius" "1000"
-          "Random" "1"
-          "MaxTargets" "1"
-        }
-        "Duration"  "60"
-        "UnitCount" "1"
-        "UnitLimit" "5"
+        "UnitLimit" "4"
         "GrantsGold"  "0"
         "GrantsXP"    "0"
         "SpawnRadius" "600"
@@ -910,7 +878,7 @@
 
     // Time
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "32"
+    "AbilityCooldown"       "35"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
@@ -921,49 +889,6 @@
       "SpawnUnit"
       {
         "UnitName"    "npc_boss_unit_3_auraguy"
-        "Target"
-        {
-          "Center" "CASTER"
-          "Radius" "600"
-          "Random" "1"
-          "MaxTargets" "1"
-        }
-
-        "Duration"  "60"
-        "UnitCount" "1"
-        "UnitLimit" "1"
-        "GrantsGold"  "0"
-        "GrantsXP"    "0"
-        "SpawnRadius" "250"
-      }
-    }
-  }
-
-  "ability_boss3_summom_auraguy_easy"
-  {
-    // General
-    //-------------------------------------------------------------------------------------------------------------
-    "BaseClass"       "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-    "AbilityTextureName"      "lycan_summon_wolves"
-
-    // Casting
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastPoint"        "0.3"
-
-    // Time
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "32"
-
-    // Cost
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"       "150"
-
-    "OnSpellStart"
-    {
-      "SpawnUnit"
-      {
-        "UnitName"    "npc_boss_unit_3_auraguy_easy"
         "Target"
         {
           "Center" "CASTER"
@@ -1013,7 +938,7 @@
       "01"
       {
         "var_type"        "FIELD_INTEGER"
-        "heal"          "65"
+        "heal"          "45"
       }
       "02"
       {
@@ -1138,7 +1063,7 @@
     {
       "particle"    "particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_initial.vpcf" // caster
       "particle"    "particles/econ/items/medusa/medusa_daughters/medusa_daughters_mana_shield_b.vpcf" // mana
-      "particle"    "particles/econ/courier/courier_babyroshan_ti9/courier_babyroshan_ti9_ambient.vpcf" // bees
+      "particle"    "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
       "particle"    "particles/econ/courier/courier_faceless_rex/cour_rex_flying.vpcf" // spwan
     }
 
@@ -1199,122 +1124,6 @@
       {
         "ScriptFile"  "ai/ability/ability_boss5_dispersion.lua"
         "Function"    "ApplyModifier"
-      }
-    }
-  }
-
-  "ability_boss5_summom_spirits"
-  {
-    // General
-    //-------------------------------------------------------------------------------------------------------------
-    "BaseClass"       "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-    "AbilityTextureName"      "lycan_summon_wolves"
-
-    // Casting
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastPoint"        "0.3"
-
-    // Time
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "40"
-
-    // Cost
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"       "150"
-
-    "OnSpellStart"
-    {
-      "SpawnUnit"
-      {
-        "UnitName"    "npc_boss_unit_5_spirit1"
-        "Target" "CASTER"
-        "Duration"  "60"
-        "UnitCount" "1"
-        "UnitLimit" "2"
-        "GrantsGold"  "0"
-        "GrantsXP"    "0"
-        "SpawnRadius" "600"
-      }
-      "SpawnUnit"
-      {
-        "UnitName"    "npc_boss_unit_5_spirit2"
-        "Target" "CASTER"
-        "Duration"  "60"
-        "UnitCount" "1"
-        "UnitLimit" "2"
-        "GrantsGold"  "0"
-        "GrantsXP"    "0"
-        "SpawnRadius" "600"
-      }
-      "SpawnUnit"
-      {
-        "UnitName"    "npc_boss_unit_5_spirit3"
-        "Target" "CASTER"
-        "Duration"  "60"
-        "UnitCount" "1"
-        "UnitLimit" "2"
-        "GrantsGold"  "0"
-        "GrantsXP"    "0"
-        "SpawnRadius" "600"
-      }
-    }
-  }
-
-  "ability_boss5_summom_spirits_easy"
-  {
-    // General
-    //-------------------------------------------------------------------------------------------------------------
-    "BaseClass"       "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-    "AbilityTextureName"      "lycan_summon_wolves"
-
-    // Casting
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastPoint"        "0.3"
-
-    // Time
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "40"
-
-    // Cost
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"       "150"
-
-    "OnSpellStart"
-    {
-      "SpawnUnit"
-      {
-        "UnitName"    "npc_boss_unit_5_spirit1_easy"
-        "Target" "CASTER"
-        "Duration"  "60"
-        "UnitCount" "1"
-        "UnitLimit" "2"
-        "GrantsGold"  "0"
-        "GrantsXP"    "0"
-        "SpawnRadius" "600"
-      }
-      "SpawnUnit"
-      {
-        "UnitName"    "npc_boss_unit_5_spirit2_easy"
-        "Target" "CASTER"
-        "Duration"  "60"
-        "UnitCount" "1"
-        "UnitLimit" "2"
-        "GrantsGold"  "0"
-        "GrantsXP"    "0"
-        "SpawnRadius" "600"
-      }
-      "SpawnUnit"
-      {
-        "UnitName"    "npc_boss_unit_5_spirit3_easy"
-        "Target" "CASTER"
-        "Duration"  "60"
-        "UnitCount" "1"
-        "UnitLimit" "2"
-        "GrantsGold"  "0"
-        "GrantsXP"    "0"
-        "SpawnRadius" "600"
       }
     }
   }
@@ -1415,7 +1224,7 @@
 
     // Stats
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"       "40"
+    "AbilityManaCost"       "20"
 
     // Special
     //-------------------------------------------------------------------------------------------------------------
@@ -1434,13 +1243,13 @@
       "03"
       {
         "var_type"        "FIELD_FLOAT"
-        "duration"        "25"
+        "duration"        "10"
       }
       // Extra
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "mana_cost"       "40"
+        "mana_cost"       "25"
       }
     }
 
@@ -1491,7 +1300,7 @@
 
     // Stats
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"       "40"
+    "AbilityManaCost"       "30"
 
     // Special
     //-------------------------------------------------------------------------------------------------------------
@@ -1505,7 +1314,7 @@
       "02"
       {
         "var_type"        "FIELD_INTEGER"
-        "max_damage_removed"     "150"
+        "max_damage_removed"     "200"
       }
       "03"
       {
@@ -1515,7 +1324,7 @@
       "04"
       {
         "var_type"        "FIELD_INTEGER"
-        "mana_cost"       "40"
+        "mana_cost"       "30"
       }
     }
 
@@ -1940,7 +1749,7 @@
     "AbilityCastPoint"        "0.3"
     "AbilityCooldown"       "12"
     "AbilityManaCost"       "0"
-    "AbilityCastRange"        "9999"
+    "AbilityCastRange"        "650"
     "AbilityDuration"       "4"
 
     "AbilitySpecial"

@@ -9,7 +9,9 @@ function BossThink()
     end
 
     if abilityCurse:IsFullyCastable() then
-      AICore:CastAbilityNoTarget(thisEntity, abilityCurse)
+        if GAME_DIFFICULT == 2 or RandomInt(1,10) <= 4 then -- 40% easy mode
+            AICore:CastAbilityNoTarget(thisEntity, abilityCurse)
+        end
     end
     return 1
 end

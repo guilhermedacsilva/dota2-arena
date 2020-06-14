@@ -20,11 +20,22 @@ function GameRound:Init()
         GAME_DIFFICULT = 2
     end
 
+    for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+        if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:HasSelectedHero( nPlayerID ) then
+            local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
+            table.insert(HEROES, hero)
+        end
+    end
+
     self._round = INITIAL_ROUND
     self._roundEnded = false
     self._nextRoundStartTime = 0
     self._enemies = {}
     self._roundData = require("rounds")
+    self.spawnerVector = Entities:FindByName(nil, "spawner_area"):GetCenter()
+    self._shouldSpawnUnit = false
+    self._spawnUnitGroup = 1
+    self._spawnUnitCount = 0
     GameRules:GetGameModeEntity():SetThink( "OnThink", self, 0.25 )
     self:BeginRound()
 end
@@ -39,17 +50,34 @@ function GameRound:BeginRound()
     })
 
     self._enemies = {}
-    local enemy = nil
-    for _, unit in pairs( self._roundData[GAME_DIFFICULT][self._round] ) do
-        for i=1, unit.qnt do
-            enemy = CreateUnitByName(unit.unitName, Vector(0,0,128), true, nil, nil, DOTA_TEAM_BADGUYS)
-            table.insert(self._enemies, enemy)
-        end
-    end
-
+    self._shouldSpawnUnit = true
     self._vEventHandles = {
         ListenToGameEvent( "entity_killed", Dynamic_Wrap( GameRound, "OnEntityKilled" ), self )
     }
+end
+
+
+function GameRound:CreateUnit()
+    local unitGroup = self._roundData[GAME_DIFFICULT][self._round][self._spawnUnitGroup]
+    if self._spawnUnitCount == unitGroup.qnt then
+        -- next unit group
+        self._spawnUnitGroup = self._spawnUnitGroup + 1
+        self._spawnUnitCount = 0
+        local nextGroup = self._roundData[GAME_DIFFICULT][self._round][self._spawnUnitGroup]
+        if nextGroup == nil then
+            -- finished spawning
+            self._spawnUnitGroup = 1
+            self._spawnUnitCount = 0
+            self._shouldSpawnUnit = false
+            return 1
+        end
+        return unitGroup.delayAfter
+    end
+
+    local enemy = CreateUnitByName(unitGroup.unitName, self.spawnerVector, true, nil, nil, DOTA_TEAM_BADGUYS)
+    table.insert(self._enemies, enemy)
+    self._spawnUnitCount = self._spawnUnitCount + 1
+    return unitGroup.delayBetween
 end
 
 function GameRound:OnEntityKilled(event)
@@ -85,6 +113,9 @@ end
 
 
 function GameRound:OnThink()
+    if GameRules:IsGamePaused() then
+        return 1
+    end
     if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         self:GiveTickGoldToPlayers()
         self:CheckForDefeat()
@@ -92,6 +123,13 @@ function GameRound:OnThink()
         if self._nextRoundStartTime ~= 0 and GameRules:GetGameTime() >= self._nextRoundStartTime then
             self._nextRoundStartTime = 0
             self:BeginRound()
+
+        elseif self._shouldSpawnUnit then
+            repeat
+                delayBetween = self:CreateUnit()
+            until delayBetween ~= 0
+            self._roundEnded = false
+            return delayBetween
 
         elseif self._roundEnded then
             self._roundEnded = false
@@ -103,7 +141,7 @@ function GameRound:OnThink()
             if self._round > MAX_ROUNDS then
                 GameRules:MakeTeamLose( DOTA_TEAM_BADGUYS )
             else
-                self._nextRoundStartTime = GameRules:GetGameTime() + 10
+                self._nextRoundStartTime = GameRules:GetGameTime() + 0.5
             end
         end
 
@@ -129,18 +167,12 @@ function GameRound:KillAllEnemies()
 end
 
 function GameRound:RefreshPlayers()
-    for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-        if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:HasSelectedHero( nPlayerID ) then
-
-            local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-            if not hero:IsAlive() then
-                hero:RespawnUnit()
-            end
-            hero:SetHealth( hero:GetMaxHealth() )
-            hero:SetMana( hero:GetMaxMana() )
-            hero:HeroLevelUp(true)
-            hero:ModifyGold(1000 + self._round * 150, true, 0)
+    for _, hero in pairs (HEROES) do
+        if not hero:IsAlive() then
+            hero:RespawnUnit()
         end
+        hero:ModifyGold(1000 + self._round * 150, true, 0)
+        hero:AddExperience(100, 0, false, false)
     end
     self:RefreshAllUnits()
 end
@@ -168,6 +200,14 @@ function GameRound:CheckForDefeat()
     end
 
     local bAllPlayersDead = true
+    for _, hero in pairs (HEROES) do
+        if hero and not hero:IsNull() and hero:IsAlive() then
+            bAllPlayersDead = false
+            break
+        end
+    end
+
+    --[[
     for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
         if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
             if not PlayerResource:HasSelectedHero( nPlayerID ) then
@@ -180,6 +220,7 @@ function GameRound:CheckForDefeat()
             end
         end
     end
+    --]]
 
     if bAllPlayersDead then
         GameRules:MakeTeamLose( DOTA_TEAM_GOODGUYS )

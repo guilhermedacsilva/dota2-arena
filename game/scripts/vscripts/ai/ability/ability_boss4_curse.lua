@@ -38,14 +38,18 @@ function ability_boss4_curse:OnSpellStart()
 
     local enemies = AICore:BotFindEnemies(self:GetCaster():GetOrigin(), 9999)
     local mods = {
-        "modifier_boss4_bees",
+        "modifier_boss4_dmg",
         "modifier_boss4_mana",
         "modifier_boss4_spawn",
         "modifier_boss4_spawn",
     }
 
+    local chance = 6 -- 60%
+    if GAME_DIFFICULT == 1 then
+        chance = 3 -- 30%
+    end
     for _, unit in pairs(enemies) do
-        if (RandomInt(1,10) <= 6) then
+        if RandomInt(1,10) <= chance then
             unit:AddNewModifier(self:GetCaster(), self, mods[RandomInt(1,4)], {duration = self:GetDuration()} )
         end
     end

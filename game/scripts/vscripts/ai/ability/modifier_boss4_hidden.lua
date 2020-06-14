@@ -3,7 +3,7 @@ function OnTakeDamage( event )
   local attacker = event.attacker
 
   if attacker ~= nil and attacker:IsRealHero() then
-    if attacker:HasModifier("modifier_boss4_bees") then
+    if attacker:HasModifier("modifier_boss4_dmg") then
       ApplyDamage({
         victim = attacker,
         attacker = caster,
@@ -11,14 +11,10 @@ function OnTakeDamage( event )
         damage_type = DAMAGE_TYPE_MAGICAL,
       })
     elseif attacker:HasModifier("modifier_boss4_mana") then
-      attacker:ReduceMana(40)
+      attacker:ReduceMana(100)
     elseif attacker:HasModifier("modifier_boss4_spawn") then
       attacker:RemoveModifierByName("modifier_boss4_spawn")
-      if GAME_DIFFICULT == 1 then
-        CreateUnitByName("npc_boss_unit_4_abaddon_easy", attacker:GetOrigin(), true, nil, nil, DOTA_TEAM_BADGUYS)
-      else
-        CreateUnitByName("npc_boss_unit_4_abaddon", attacker:GetOrigin(), true, nil, nil, DOTA_TEAM_BADGUYS)
-      end
+      CreateUnitByName("npc_boss_unit_4_abaddon", attacker:GetOrigin(), true, nil, nil, DOTA_TEAM_BADGUYS)
     end
   end
 end

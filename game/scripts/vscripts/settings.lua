@@ -2,7 +2,7 @@
 
 DEBUG_HEROES = true
 DEBUG_QNT_HEROES = 5
-INITIAL_ROUND = 10
+INITIAL_ROUND = 6
 MAX_ROUNDS = 10
 
 if DEBUG_HEROES then
@@ -15,6 +15,7 @@ GAME_DIFFICULT = 1
 ENABLE_HERO_RESPAWN = false              -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = true             -- Should the main shop contain Secret Shop items as well as regular items
 ALLOW_SAME_HERO_SELECTION = false        -- Should we let people select the same hero as each other
+HEROES = {}
 
 HERO_SELECTION_TIME = 30.0              -- How long should we let people select their hero?
 PRE_GAME_TIME = 5.0                    -- How long after people select their heroes should the horn blow and the game start?

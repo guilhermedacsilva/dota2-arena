@@ -151,7 +151,7 @@ function GameMode:OnGameInProgress()
     require("test/test_heroes")
   end
 
-  LinkLuaModifier("modifier_boss4_bees", "ai/ability/modifier_boss4_bees", LUA_MODIFIER_MOTION_NONE )
+  LinkLuaModifier("modifier_boss4_dmg", "ai/ability/modifier_boss4_dmg", LUA_MODIFIER_MOTION_NONE )
   LinkLuaModifier("modifier_boss4_mana", "ai/ability/modifier_boss4_mana", LUA_MODIFIER_MOTION_NONE )
   LinkLuaModifier("modifier_boss4_spawn", "ai/ability/modifier_boss4_spawn", LUA_MODIFIER_MOTION_NONE )
 
