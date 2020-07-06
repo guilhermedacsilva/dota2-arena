@@ -1136,6 +1136,98 @@
     }
   }
 
+  "npc_boss_unit_7a"
+  {
+    "BaseClass"         "npc_dota_creature"
+    "Model"           "models/creeps/neutral_creeps/n_creep_black_drake/n_creep_black_drake.vmdl"
+    "SoundSet"          "Hero_Winter_Wyvern"
+    "Level"           "10"
+
+    "ModelScale"                "1.2"
+
+    "ArmorPhysical"       "6"
+    "MagicalResistance"       "0"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+    "AttackDamageMin"     "50"
+    "AttackDamageMax"     "50"
+    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+    "AttackRate"        "1.5"
+    "AttackAnimationPoint"    "0.3"
+    "AttackAcquisitionRange"  "9999"
+    "AttackRange"       "500"
+    "ProjectileModel"     "particles/neutral_fx/black_drake_attack.vpcf"
+    "ProjectileSpeed"     "800"
+
+    "StatusHealth"        "1000"
+    "StatusHealthRegen"     "3"
+    "StatusMana"        "400"
+    "StatusManaRegen"     "1"
+
+    "RingRadius"              "150"
+    "HealthBarOffset"           "300"
+    "BountyXP"          "0"
+    "BountyGoldMin"       "0"
+    "BountyGoldMax"       "0"
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_FLY"
+    "MovementSpeed"       "350"
+    "MovementTurnRate"      "1.0"
+    "FollowRange"       "9999"
+    "BoundsHullName"      "DOTA_HULL_SIZE_HERO"
+    "TeamName"          "DOTA_TEAM_BADGUYS"
+    "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
+    "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
+    "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    "VisionDaytimeRange"    "8000"
+    "VisionNighttimeRange"    "8000"
+  }
+
+  "npc_boss_unit_7b"
+  {
+    "BaseClass"         "npc_dota_creature"
+    "Model"           "models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl"
+    "SoundSet"          "Hero_Winter_Wyvern"
+    "Level"           "10"
+
+    "ModelScale"                "1.35"
+
+    "ArmorPhysical"       "6"
+    "MagicalResistance"       "0"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+    "AttackDamageMin"     "100"
+    "AttackDamageMax"     "100"
+    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+    "AttackRate"        "1.5"
+    "AttackAnimationPoint"    "0.3"
+    "AttackAcquisitionRange"  "9999"
+    "AttackRange"       "600"
+    "ProjectileModel"     "particles/neutral_fx/black_dragon_attack.vpcf"
+    "ProjectileSpeed"     "800"
+
+    "StatusHealth"        "2000"
+    "StatusHealthRegen"     "3"
+    "StatusMana"        "800"
+    "StatusManaRegen"     "1"
+
+    "RingRadius"              "150"
+    "HealthBarOffset"           "300"
+    "BountyXP"          "0"
+    "BountyGoldMin"       "0"
+    "BountyGoldMax"       "0"
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_FLY"
+    "MovementSpeed"       "350"
+    "MovementTurnRate"      "1.0"
+    "FollowRange"       "9999"
+    "BoundsHullName"      "DOTA_HULL_SIZE_HERO"
+    "TeamName"          "DOTA_TEAM_BADGUYS"
+    "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
+    "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
+    "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    "VisionDaytimeRange"    "8000"
+    "VisionNighttimeRange"    "8000"
+  }
+
   "npc_boss_unit_7_wyvern"
   {
     "vscripts"           "ai/boss7_wyvern.lua"
@@ -1155,8 +1247,8 @@
     "MagicalResistance"       "0"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-    "AttackDamageMin"     "275"
-    "AttackDamageMax"     "275"
+    "AttackDamageMin"     "225"
+    "AttackDamageMax"     "225"
     "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
     "AttackRate"        "1.1"
     "AttackAnimationPoint"    "0.3"
@@ -1165,9 +1257,9 @@
     "ProjectileModel"     "particles/units/heroes/hero_winter_wyvern/winter_wyvern_arctic_attack.vpcf"
     "ProjectileSpeed"     "800"
 
-    "StatusHealth"        "30000"
+    "StatusHealth"        "13000"
     "StatusHealthRegen"     "15"
-    "StatusMana"        "4000"
+    "StatusMana"        "1000"
     "StatusManaRegen"     "100"
 
     "RingRadius"              "150"
@@ -1175,7 +1267,7 @@
     "BountyXP"          "0"
     "BountyGoldMin"       "0"
     "BountyGoldMax"       "0"
-    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_FLY"
     "MovementSpeed"       "350"
     "MovementTurnRate"      "1.0"
     "FollowRange"       "9999"
@@ -1207,42 +1299,36 @@
     }
   }
 
-  "npc_boss_unit_7_wyvern_easy"
+  "npc_boss_unit_8a"
   {
-    "vscripts"           "ai/boss7_wyvern.lua"
     "BaseClass"         "npc_dota_creature"
-    "Model"           "models/heroes/winterwyvern/winterwyvern.vmdl"
-    "SoundSet"          "Hero_Winter_Wyvern"
+    "Model"           "models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"
+    "SoundSet"          "Creep_Bad_Melee"
     "Level"           "10"
 
-    "ModelScale"                "2"
+    "ModelScale"                "1.2"
 
-    "Ability1"          "winter_wyvern_splinter_blast"
-    "Ability2"          "winter_wyvern_winters_curse"
-    "Ability3"          "ancient_apparition_ice_vortex"
-    "Ability4"          "status_resistance_50"
-
-    "ArmorPhysical"       "6"
+    "ArmorPhysical"       "7"
     "MagicalResistance"       "0"
 
-    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-    "AttackDamageMin"     "245"
-    "AttackDamageMax"     "245"
+    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+    "AttackDamageMin"     "50"
+    "AttackDamageMax"     "50"
     "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
-    "AttackRate"        "1.1"
-    "AttackAnimationPoint"    "0.3"
+    "AttackRate"        "1.5"
+    "AttackAnimationPoint"    "0.5"
     "AttackAcquisitionRange"  "9999"
-    "AttackRange"       "500"
-    "ProjectileModel"     "particles/units/heroes/hero_winter_wyvern/winter_wyvern_arctic_attack.vpcf"
+    "AttackRange"       "200"
+    "ProjectileModel"     ""
     "ProjectileSpeed"     "800"
 
-    "StatusHealth"        "15000"
-    "StatusHealthRegen"     "5"
-    "StatusMana"        "4000"
-    "StatusManaRegen"     "100"
+    "StatusHealth"        "1100"
+    "StatusHealthRegen"     "3"
+    "StatusMana"        "500"
+    "StatusManaRegen"     "1"
 
-    "RingRadius"              "150"
-    "HealthBarOffset"           "300"
+    "RingRadius"              "100"
+    "HealthBarOffset"           "200"
     "BountyXP"          "0"
     "BountyGoldMin"       "0"
     "BountyGoldMax"       "0"
@@ -1250,32 +1336,62 @@
     "MovementSpeed"       "350"
     "MovementTurnRate"      "1.0"
     "FollowRange"       "9999"
-    "BoundsHullName"      "DOTA_HULL_SIZE_HUGE"
+    "BoundsHullName"      "DOTA_HULL_SIZE_HERO"
     "TeamName"          "DOTA_TEAM_BADGUYS"
     "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
     "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
     "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
     "VisionDaytimeRange"    "8000"
     "VisionNighttimeRange"    "8000"
+  }
 
-    "Creature"
-    {
-        "AttachWearables"
-        {
-            "Wearable1"
-            {
-                "ItemDef"           "9277" // head
-            }
-            "Wearable2"
-            {
-                "ItemDef"           "9276" // back
-            }
-            "Wearable3"
-            {
-                "ItemDef"           "553" // ambient
-            }
-        }
-    }
+  "npc_boss_unit_8b"
+  {
+    "vscripts"           "ai/boss8b.lua"
+    "BaseClass"         "npc_dota_creature"
+    "Model"           "models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_frost.vmdl"
+    "SoundSet"          "Creep_Bad_Melee"
+    "Level"           "3"
+
+    "ModelScale"                "1.5"
+
+    "Ability1"          "necrolyte_heartstopper_aura"
+
+    "ArmorPhysical"       "7"
+    "MagicalResistance"       "0"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+    "AttackDamageMin"     "75"
+    "AttackDamageMax"     "75"
+    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+    "AttackRate"        "2.0"
+    "AttackAnimationPoint"    "0.4"
+    "AttackAcquisitionRange"  "9999"
+    "AttackRange"       "500"
+    "ProjectileModel"     "particles/neutral_fx/ghost_base_attack.vpcf"
+    "ProjectileSpeed"     "600"
+
+    "StatusHealth"        "2000"
+    "StatusHealthRegen"     "3"
+    "StatusMana"        "1000"
+    "StatusManaRegen"     "50"
+
+    "RingRadius"              "80"
+    "HealthBarOffset"           "225"
+    "BountyXP"          "0"
+    "BountyGoldMin"       "0"
+    "BountyGoldMax"       "0"
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "350"
+    "MovementTurnRate"      "1.0"
+    "FollowRange"       "9999"
+    "BoundsHullName"      "DOTA_HULL_SIZE_HERO"
+    "TeamName"          "DOTA_TEAM_BADGUYS"
+    "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
+    "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
+    "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    "VisionDaytimeRange"    "8000"
+    "VisionNighttimeRange"    "8000"
   }
 
   "npc_boss_unit_8_stalker"
@@ -1306,14 +1422,6 @@
     "AttackRange"       "200"
     "ProjectileModel"     ""
     "ProjectileSpeed"     "800"
-
-    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-    "AttributeBaseStrength"   "80"
-    "AttributeStrengthGain"   "0"
-    "AttributeBaseIntelligence" "80"
-    "AttributeIntelligenceGain" "0"
-    "AttributeBaseAgility"    "80"
-    "AttributeAgilityGain"    "0"
 
     "StatusHealth"        "35000"
     "StatusHealthRegen"     "15"
@@ -1365,50 +1473,39 @@
     }
   }
 
-  "npc_boss_unit_8_stalker_easy"
+  "npc_boss_unit_9a"
   {
-    "vscripts"           "ai/boss8_stalker.lua"
+    "vscripts"           "ai/boss9a.lua"
     "BaseClass"         "npc_dota_creature"
-    "Model"           "models/heroes/nightstalker/nightstalker.vmdl"
-    "SoundSet"          "Hero_Nightstalker"
-    "Level"           "1"
+    "Model"           "models/heroes/morphling/morphling.vmdl"
+    "SoundSet"          "Hero_Morphling"
+    "Level"           "10"
 
-    "ModelScale"                "2"
+    "ModelScale"                "1.3"
 
-    "Ability1"          "night_stalker_crippling_fear"
-    "Ability2"          "abaddon_borrowed_time"
-    "Ability3"          "slardar_bash"
-    "Ability4"          "status_resistance_75"
+    "Ability1"          "morphling_waveform"
 
-    "ArmorPhysical"       "7"
+    "ArmorPhysical"       "8"
     "MagicalResistance"       "0"
 
-    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
-    "AttackDamageMin"     "235"
-    "AttackDamageMax"     "235"
+    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+    "AttackDamageMin"     "50"
+    "AttackDamageMax"     "50"
     "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
-    "AttackRate"        "0.5"
-    "AttackAnimationPoint"    "0.3"
+    "AttackRate"        "1.5"
+    "AttackAnimationPoint"    "0.5"
     "AttackAcquisitionRange"  "9999"
-    "AttackRange"       "200"
-    "ProjectileModel"     ""
+    "AttackRange"       "350"
+    "ProjectileModel"     "particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
     "ProjectileSpeed"     "800"
 
-    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-    "AttributeBaseStrength"   "80"
-    "AttributeStrengthGain"   "0"
-    "AttributeBaseIntelligence" "80"
-    "AttributeIntelligenceGain" "0"
-    "AttributeBaseAgility"    "80"
-    "AttributeAgilityGain"    "0"
+    "StatusHealth"        "1300"
+    "StatusHealthRegen"     "3"
+    "StatusMana"        "600"
+    "StatusManaRegen"     "20"
 
-    "StatusHealth"        "18000"
-    "StatusHealthRegen"     "5"
-    "StatusMana"        "4000"
-    "StatusManaRegen"     "120"
-
-    "RingRadius"              "150"
-    "HealthBarOffset"           "300"
+    "RingRadius"              "80"
+    "HealthBarOffset"           "200"
     "BountyXP"          "0"
     "BountyGoldMin"       "0"
     "BountyGoldMax"       "0"
@@ -1416,40 +1513,13 @@
     "MovementSpeed"       "350"
     "MovementTurnRate"      "1.0"
     "FollowRange"       "9999"
-    "BoundsHullName"      "DOTA_HULL_SIZE_HUGE"
+    "BoundsHullName"      "DOTA_HULL_SIZE_HERO"
     "TeamName"          "DOTA_TEAM_BADGUYS"
     "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
     "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
     "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
     "VisionDaytimeRange"    "8000"
     "VisionNighttimeRange"    "8000"
-
-    "Creature"
-    {
-        "AttachWearables"
-        {
-            "Wearable1"
-            {
-                "ItemDef"           "8885" // back
-            }
-            "Wearable2"
-            {
-                "ItemDef"           "8888" // leg
-            }
-            "Wearable3"
-            {
-                "ItemDef"           "8889" // tail
-            }
-            "Wearable4"
-            {
-                "ItemDef"           "8887" // head
-            }
-            "Wearable5"
-            {
-                "ItemDef"           "8886" // arms
-            }
-        }
-    }
   }
 
   "npc_boss_unit_9_morphling"
@@ -1480,18 +1550,10 @@
     "ProjectileModel"     "particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
     "ProjectileSpeed"     "800"
 
-    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-    "AttributeBaseStrength"   "90"
-    "AttributeStrengthGain"   "0"
-    "AttributeBaseIntelligence" "90"
-    "AttributeIntelligenceGain" "0"
-    "AttributeBaseAgility"    "90"
-    "AttributeAgilityGain"    "0"
-
-    "StatusHealth"        "50000"
+    "StatusHealth"        "43000"
     "StatusHealthRegen"     "15"
     "StatusMana"        "4000"
-    "StatusManaRegen"     "120"
+    "StatusManaRegen"     "150"
 
     "RingRadius"              "150"
     "HealthBarOffset"           "300"
@@ -1542,49 +1604,36 @@
     }
   }
 
-  "npc_boss_unit_9_morphling_easy"
+  "npc_boss_unit_10a"
   {
-    "vscripts"           "ai/boss9_morphling.lua"
     "BaseClass"         "npc_dota_creature"
-    "Model"           "models/heroes/morphling/morphling.vmdl"
-    "SoundSet"          "Hero_Morphling"
+    "Model"           "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
+    "SoundSet"          "Creep_Bad_Melee"
     "Level"           "10"
 
-    "ModelScale"                "2"
+    "ModelScale"                "1.4"
 
-    "Ability1"          "morphling_waveform"
-    "Ability2"          "kunkka_torrent"
-    "Ability3"          "status_resistance_50"
-
-    "ArmorPhysical"       "8"
+    "ArmorPhysical"       "9"
     "MagicalResistance"       "0"
 
-    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-    "AttackDamageMin"     "300"
-    "AttackDamageMax"     "300"
+    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+    "AttackDamageMin"     "75"
+    "AttackDamageMax"     "75"
     "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
-    "AttackRate"        "0.8"
-    "AttackAnimationPoint"    "0.3"
+    "AttackRate"        "1.5"
+    "AttackAnimationPoint"    "0.5"
     "AttackAcquisitionRange"  "9999"
-    "AttackRange"       "450"
-    "ProjectileModel"     "particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
+    "AttackRange"       "170"
+    "ProjectileModel"     ""
     "ProjectileSpeed"     "800"
 
-    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-    "AttributeBaseStrength"   "90"
-    "AttributeStrengthGain"   "0"
-    "AttributeBaseIntelligence" "90"
-    "AttributeIntelligenceGain" "0"
-    "AttributeBaseAgility"    "90"
-    "AttributeAgilityGain"    "0"
+    "StatusHealth"        "1500"
+    "StatusHealthRegen"     "3"
+    "StatusMana"        "600"
+    "StatusManaRegen"     "20"
 
-    "StatusHealth"        "25000"
-    "StatusHealthRegen"     "15"
-    "StatusMana"        "4000"
-    "StatusManaRegen"     "120"
-
-    "RingRadius"              "150"
-    "HealthBarOffset"           "300"
+    "RingRadius"              "80"
+    "HealthBarOffset"           "200"
     "BountyXP"          "0"
     "BountyGoldMin"       "0"
     "BountyGoldMax"       "0"
@@ -1592,44 +1641,13 @@
     "MovementSpeed"       "350"
     "MovementTurnRate"      "1.0"
     "FollowRange"       "9999"
-    "BoundsHullName"      "DOTA_HULL_SIZE_HUGE"
+    "BoundsHullName"      "DOTA_HULL_SIZE_HERO"
     "TeamName"          "DOTA_TEAM_BADGUYS"
     "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
     "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
     "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
     "VisionDaytimeRange"    "8000"
     "VisionNighttimeRange"    "8000"
-
-    "Creature"
-    {
-        "AttachWearables"
-        {
-            "Wearable1"
-            {
-                "ItemDef"           "8809" // arms
-            }
-            "Wearable2"
-            {
-                "ItemDef"           "8808" // shoulder
-            }
-            "Wearable3"
-            {
-                "ItemDef"           "8807" // misc
-            }
-            "Wearable4"
-            {
-                "ItemDef"           "8806" // head
-            }
-            "Wearable5"
-            {
-                "ItemDef"           "8810" // back
-            }
-            "Wearable6"
-            {
-                "ItemDef"           "507" // ambient
-            }
-        }
-    }
   }
 
   "npc_boss_unit_10_meepo_knight"
@@ -1658,14 +1676,6 @@
     "AttackRange"       "200"
     "ProjectileModel"     ""
     "ProjectileSpeed"     "800"
-
-    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-    "AttributeBaseStrength"   "100"
-    "AttributeStrengthGain"   "0"
-    "AttributeBaseIntelligence" "100"
-    "AttributeIntelligenceGain" "0"
-    "AttributeBaseAgility"    "100"
-    "AttributeAgilityGain"    "0"
 
     "StatusHealth"        "30000"
     "StatusHealthRegen"     "15"
@@ -1753,14 +1763,6 @@
     "ProjectileModel"     ""
     "ProjectileSpeed"     "800"
 
-    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-    "AttributeBaseStrength"   "100"
-    "AttributeStrengthGain"   "0"
-    "AttributeBaseIntelligence" "100"
-    "AttributeIntelligenceGain" "0"
-    "AttributeBaseAgility"    "100"
-    "AttributeAgilityGain"    "0"
-
     "StatusHealth"        "30000"
     "StatusHealthRegen"     "15"
     "StatusMana"        "4000"
@@ -1842,14 +1844,6 @@
     "ProjectileModel"     ""
     "ProjectileSpeed"     "800"
 
-    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-    "AttributeBaseStrength"   "100"
-    "AttributeStrengthGain"   "0"
-    "AttributeBaseIntelligence" "100"
-    "AttributeIntelligenceGain" "0"
-    "AttributeBaseAgility"    "100"
-    "AttributeAgilityGain"    "0"
-
     "StatusHealth"        "30000"
     "StatusHealthRegen"     "15"
     "StatusMana"        "4000"
@@ -1899,186 +1893,6 @@
             "Wearable6"
             {
                 "ItemDef"           "251" // ambient particle
-            }
-        }
-    }
-  }
-
-  "npc_boss_unit_10_meepo"
-  {
-    "vscripts"           "ai/boss10_meepo.lua"
-    "BaseClass"         "npc_dota_creature"
-    "Model"           "models/heroes/meepo/meepo.vmdl"
-    "SoundSet"          "Hero_Meepo"
-    "Level"           "1"
-
-    "ModelScale"                "2"
-
-    "Ability1"          "status_resistance_50"
-    "Ability2"          ""
-    "Ability3"          ""
-
-    "ArmorPhysical"       "9"
-    "MagicalResistance"       "0"
-
-    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
-    "AttackDamageMin"     "330"
-    "AttackDamageMax"     "330"
-    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
-    "AttackRate"        "0.7"
-    "AttackAnimationPoint"    "0.3"
-    "AttackAcquisitionRange"  "9999"
-    "AttackRange"       "225"
-    "ProjectileModel"     ""
-    "ProjectileSpeed"     "800"
-
-    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-    "AttributeBaseStrength"   "100"
-    "AttributeStrengthGain"   "0"
-    "AttributeBaseIntelligence" "100"
-    "AttributeIntelligenceGain" "0"
-    "AttributeBaseAgility"    "100"
-    "AttributeAgilityGain"    "0"
-
-    "StatusHealth"        "30000"
-    "StatusHealthRegen"     "15"
-    "StatusMana"        "4000"
-    "StatusManaRegen"     "120"
-
-    "RingRadius"              "150"
-    "HealthBarOffset"           "300"
-    "BountyXP"          "0"
-    "BountyGoldMin"       "0"
-    "BountyGoldMax"       "0"
-    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
-    "MovementSpeed"       "350"
-    "MovementTurnRate"      "1.0"
-    "FollowRange"       "9999"
-    "BoundsHullName"      "DOTA_HULL_SIZE_HUGE"
-    "TeamName"          "DOTA_TEAM_BADGUYS"
-    "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
-    "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
-    "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-    "VisionDaytimeRange"    "8000"
-    "VisionNighttimeRange"    "8000"
-
-    "Creature"
-    {
-        "AttachWearables"
-        {
-            "Wearable1"
-            {
-                "ItemDef"           "104" // weapon
-            }
-            "Wearable2"
-            {
-                "ItemDef"           "296" // head
-            }
-            "Wearable3"
-            {
-                "ItemDef"           "297" // back
-            }
-            "Wearable4"
-            {
-                "ItemDef"           "298" // shoulder
-            }
-            "Wearable5"
-            {
-                "ItemDef"           "299" // arms
-            }
-            "Wearable6"
-            {
-                "ItemDef"           "300" // tail
-            }
-        }
-    }
-  }
-
-  "npc_boss_unit_10_meepo"
-  {
-    "vscripts"           "ai/boss10_meepo.lua"
-    "BaseClass"         "npc_dota_creature"
-    "Model"           "models/heroes/meepo/meepo.vmdl"
-    "SoundSet"          "Hero_Meepo"
-    "Level"           "1"
-
-    "ModelScale"                "2"
-
-    "Ability1"          "status_resistance_50"
-    "Ability2"          ""
-    "Ability3"          ""
-
-    "ArmorPhysical"       "9"
-    "MagicalResistance"       "0"
-
-    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
-    "AttackDamageMin"     "330"
-    "AttackDamageMax"     "330"
-    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
-    "AttackRate"        "0.7"
-    "AttackAnimationPoint"    "0.3"
-    "AttackAcquisitionRange"  "9999"
-    "AttackRange"       "225"
-    "ProjectileModel"     ""
-    "ProjectileSpeed"     "800"
-
-    "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-    "AttributeBaseStrength"   "100"
-    "AttributeStrengthGain"   "0"
-    "AttributeBaseIntelligence" "100"
-    "AttributeIntelligenceGain" "0"
-    "AttributeBaseAgility"    "100"
-    "AttributeAgilityGain"    "0"
-
-    "StatusHealth"        "30000"
-    "StatusHealthRegen"     "15"
-    "StatusMana"        "4000"
-    "StatusManaRegen"     "120"
-
-    "RingRadius"              "150"
-    "HealthBarOffset"           "300"
-    "BountyXP"          "0"
-    "BountyGoldMin"       "0"
-    "BountyGoldMax"       "0"
-    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
-    "MovementSpeed"       "350"
-    "MovementTurnRate"      "1.0"
-    "FollowRange"       "9999"
-    "BoundsHullName"      "DOTA_HULL_SIZE_HUGE"
-    "TeamName"          "DOTA_TEAM_BADGUYS"
-    "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
-    "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
-    "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-    "VisionDaytimeRange"    "8000"
-    "VisionNighttimeRange"    "8000"
-
-    "Creature"
-    {
-        "AttachWearables"
-        {
-            "Wearable1"
-            {
-                "ItemDef"           "104" // weapon
-            }
-            "Wearable2"
-            {
-                "ItemDef"           "296" // head
-            }
-            "Wearable3"
-            {
-                "ItemDef"           "297" // back
-            }
-            "Wearable4"
-            {
-                "ItemDef"           "298" // shoulder
-            }
-            "Wearable5"
-            {
-                "ItemDef"           "299" // arms
-            }
-            "Wearable6"
-            {
-                "ItemDef"           "300" // tail
             }
         }
     }

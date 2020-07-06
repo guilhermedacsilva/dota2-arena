@@ -1,10 +1,10 @@
 function Spawn( entityKeyValues )
-    abilitySilence = thisEntity:FindAbilityByName( "ability_boss3_silence" )
-    abilitySummon = AICore:FindAbility(thisEntity, "ability_boss3_summom_healer" )
-    abilityBattleHunger = AICore:FindAbility(thisEntity, "ability_boss2_battle_hunger" )
-    abilityBattleHunger:StartCooldown(20)
-    abilitySummonAuraguy = AICore:FindAbility(thisEntity, "ability_boss3_summom_auraguy" )
-    abilitySummonAuraguy:StartCooldown(25)
+    thisEntity._abilitySilence = thisEntity:FindAbilityByName( "ability_boss3_silence" )
+    thisEntity._abilitySummon = AICore:FindAbility(thisEntity, "ability_boss3_summom_healer" )
+    thisEntity._abilityBattleHunger = AICore:FindAbility(thisEntity, "ability_boss2_battle_hunger" )
+    thisEntity._abilityBattleHunger:StartCooldown(20)
+    thisEntity._abilitySummonAuraguy = AICore:FindAbility(thisEntity, "ability_boss3_summom_auraguy" )
+    thisEntity._abilitySummonAuraguy:StartCooldown(25)
     thisEntity:SetContextThink( "BossThink", BossThink, 5 )
 end
 
@@ -13,16 +13,16 @@ function BossThink()
         return nil
     end
 
-    if abilitySummon:IsFullyCastable() then
-      AICore:CastAbilityNoTarget(thisEntity, abilitySummon)
-    elseif abilitySummonAuraguy:IsFullyCastable() then
-      AICore:CastAbilityNoTarget(thisEntity, abilitySummonAuraguy)
-    elseif abilityBattleHunger:IsFullyCastable() then
-      AICore:CastAbilityNoTarget(thisEntity, abilityBattleHunger)
-    elseif abilitySilence:IsFullyCastable() then
+    if thisEntity._abilitySummon:IsFullyCastable() then
+      AICore:CastAbilityNoTarget(thisEntity, thisEntity._abilitySummon)
+    elseif thisEntity._abilitySummonAuraguy:IsFullyCastable() then
+      AICore:CastAbilityNoTarget(thisEntity, thisEntity._abilitySummonAuraguy)
+    elseif thisEntity._abilityBattleHunger:IsFullyCastable() then
+      AICore:CastAbilityNoTarget(thisEntity, thisEntity._abilityBattleHunger)
+    elseif thisEntity._abilitySilence:IsFullyCastable() then
       local units = AICore:BotFindEnemies(thisEntity:GetOrigin(), 900)
       if #units > 0 then
-        AICore:CastAbilityPosition(thisEntity, abilitySilence, units[1]:GetOrigin())
+        AICore:CastAbilityPosition(thisEntity, thisEntity._abilitySilence, units[1]:GetOrigin())
       end
     end
     return 1

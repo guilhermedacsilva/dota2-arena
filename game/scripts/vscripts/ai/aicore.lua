@@ -11,6 +11,7 @@ end
 
 function AICore:AddCooldown(ability, time)
   table.insert(AICore.spells, {
+    caster = ability:GetCaster(),
     ability = ability,
     cooldown = time,
     gametime = GameRules:GetGameTime() + time
@@ -18,16 +19,22 @@ function AICore:AddCooldown(ability, time)
 end
 
 function AICore:VerifyCooldowns()
-  for _, abi in pairs(AICore.spells) do
-    if (GameRules:GetGameTime() >= abi.gametime) then
+  local removeIdx = -1
+  for i, abi in pairs(AICore.spells) do
+    if abi.caster == nil or not abi.caster:IsAlive() then
+      removeIdx = i
+    elseif GameRules:GetGameTime() >= abi.gametime then
       abi.ability:EndCooldown()
     end
+  end
+  if removeIdx ~= -1 then
+    table.remove(AICore.spells, removeIdx)
   end
 end
 
 function AICore:StartCooldown(ability)
   for _, abi in pairs(AICore.spells) do
-    if (abi.ability == ability) then
+    if abi.ability == ability then
       abi.gametime = GameRules:GetGameTime() + abi.cooldown
       break
     end

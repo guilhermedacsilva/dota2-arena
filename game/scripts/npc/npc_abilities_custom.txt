@@ -1933,6 +1933,15 @@
           "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%bonus_armor"
           "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%bonus_magic_resistance"
         }
+        "OnCreated"
+        {
+          "AttachEffect"
+          {
+            "EffectName"      "particles/econ/items/lina/lina_ti6/lina_ti6_ambient_ground_aura.vpcf"
+            "EffectAttachType"    "follow_origin"
+            "Target"      "TARGET"
+          }
+        }
       }
     }
   }

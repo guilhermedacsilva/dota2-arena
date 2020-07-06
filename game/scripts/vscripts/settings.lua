@@ -1,8 +1,8 @@
 -- In this file you can set up all the properties and settings for your game mode.
 
-DEBUG_HEROES = true
+DEBUG_HEROES = false -- não deixar chegar no canto do jogo senão cai
 DEBUG_QNT_HEROES = 5
-INITIAL_ROUND = 6
+INITIAL_ROUND = 10
 MAX_ROUNDS = 10
 
 if DEBUG_HEROES then

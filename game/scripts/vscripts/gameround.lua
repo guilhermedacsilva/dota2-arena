@@ -74,7 +74,8 @@ function GameRound:CreateUnit()
         return unitGroup.delayAfter
     end
 
-    local enemy = CreateUnitByName(unitGroup.unitName, self.spawnerVector, true, nil, nil, DOTA_TEAM_BADGUYS)
+    local vectorRandom = Vector(RandomInt(-300,300),RandomInt(-300,300),0)
+    local enemy = CreateUnitByName(unitGroup.unitName, self.spawnerVector + vectorRandom, true, nil, nil, DOTA_TEAM_BADGUYS)
     table.insert(self._enemies, enemy)
     self._spawnUnitCount = self._spawnUnitCount + 1
     return unitGroup.delayBetween

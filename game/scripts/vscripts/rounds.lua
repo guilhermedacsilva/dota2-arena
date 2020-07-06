@@ -36,19 +36,34 @@ roundData =
             {qnt = 1, unitName = "npc_boss_unit_5_shadow_fiend", delayBetween = 1, delayAfter = 0}
         },
         {
-            {qnt = 1, unitName = "npc_boss_unit_6_huskar_easy", msg ="Crazy huskar"}
+            {qnt = 18, unitName = "npc_boss_unit_6a", delayBetween = 0.05, delayAfter = 8, msg ="Huskar"},
+            {qnt = 1, unitName = "npc_boss_unit_6_huskar", delayBetween = 3, delayAfter = 0}
         },
         {
-            {qnt = 1, unitName = "npc_boss_unit_7_wyvern_easy", msg ="Don't stay close"}
+            {qnt = 18, unitName = "npc_boss_unit_7a", delayBetween = 0.05, delayAfter = 8, msg ="Do NOT stay close!"},
+            {qnt = 7, unitName = "npc_boss_unit_7b", delayBetween = 0.1, delayAfter = 8},
+            {qnt = 1, unitName = "npc_boss_unit_7_wyvern", delayBetween = 1, delayAfter = 1},
+            {qnt = 7, unitName = "npc_boss_unit_7a", delayBetween = 1, delayAfter = 1},
+            {qnt = 3, unitName = "npc_boss_unit_7b", delayBetween = 1, delayAfter = 8}
         },
         {
-            {qnt = 1, unitName = "npc_boss_unit_8_stalker_easy", msg ="It's night time"}
+            {qnt = 18, unitName = "npc_boss_unit_8a", delayBetween = 0, delayAfter = 3, msg ="Night time"},
+            {qnt = 1, unitName = "npc_boss_unit_8b", delayBetween = 0, delayAfter = 3},
+            {qnt = 1, unitName = "npc_boss_unit_8_stalker", delayBetween = 0, delayAfter = 3},
+            {qnt = 1, unitName = "npc_boss_unit_8b", delayBetween = 0, delayAfter = 0},
+            {qnt = 72, unitName = "npc_boss_unit_8a", delayBetween = 0.5, delayAfter = 1}
         },
         {
-            {qnt = 1, unitName = "npc_boss_unit_9_morphling_easy", msg ="Jumping water"}
+            {qnt = 18, unitName = "npc_boss_unit_9a", delayBetween = 1, delayAfter = 3, msg ="Jumping water"},
+            {qnt = 1, unitName = "npc_boss_unit_9_morphling", delayBetween = 0, delayAfter = 1}
         },
         {
-            {qnt = 1, unitName = "npc_boss_unit_10_meepo_knight", msg ="Meepo gang"}
+            {qnt = 12, unitName = "npc_boss_unit_10a", delayBetween = 0.2, delayAfter = 0.2, msg ="Meepo"},
+            {qnt = 1, unitName = "npc_boss_unit_10_meepo_crystal", delayBetween = 0.2, delayAfter = 10},
+            {qnt = 12, unitName = "npc_boss_unit_10a", delayBetween = 0.2, delayAfter = 0.2},
+            {qnt = 1, unitName = "npc_boss_unit_10_meepo_knight", delayBetween = 0.2, delayAfter = 10},
+            {qnt = 12, unitName = "npc_boss_unit_10a", delayBetween = 0.2, delayAfter = 0.2},
+            {qnt = 1, unitName = "npc_boss_unit_10_meepo_voodoo", delayBetween = 0.2, delayAfter = 0.2}
         }
     },
     { -- [2] = 5 players
@@ -91,18 +106,31 @@ roundData =
             {qnt = 2, unitName = "npc_boss_unit_6_huskar", delayBetween = 3, delayAfter = 0}
         },
         {
-            {qnt = 1, unitName = "npc_boss_unit_7_wyvern", msg ="Don't stay close"}
+            {qnt = 30, unitName = "npc_boss_unit_7a", delayBetween = 0.05, delayAfter = 8, msg ="Do NOT stay close!"},
+            {qnt = 10, unitName = "npc_boss_unit_7b", delayBetween = 0.1, delayAfter = 8},
+            {qnt = 1, unitName = "npc_boss_unit_7_wyvern", delayBetween = 1, delayAfter = 1},
+            {qnt = 10, unitName = "npc_boss_unit_7a", delayBetween = 1, delayAfter = 1},
+            {qnt = 5, unitName = "npc_boss_unit_7b", delayBetween = 1, delayAfter = 12},
+            {qnt = 1, unitName = "npc_boss_unit_7_wyvern", delayBetween = 1, delayAfter = 1}
         },
         {
-            {qnt = 1, unitName = "npc_boss_unit_8_stalker", msg ="It's night time"}
+            {qnt = 30, unitName = "npc_boss_unit_8a", delayBetween = 0, delayAfter = 3, msg ="Night time"},
+            {qnt = 1, unitName = "npc_boss_unit_8b", delayBetween = 0, delayAfter = 3},
+            {qnt = 1, unitName = "npc_boss_unit_8_stalker", delayBetween = 0, delayAfter = 3},
+            {qnt = 1, unitName = "npc_boss_unit_8b", delayBetween = 0, delayAfter = 0},
+            {qnt = 120, unitName = "npc_boss_unit_8a", delayBetween = 0.5, delayAfter = 1}
         },
         {
-            {qnt = 1, unitName = "npc_boss_unit_9_morphling", msg ="Jumping water"}
+            {qnt = 30, unitName = "npc_boss_unit_9a", delayBetween = 1, delayAfter = 3, msg ="Jumping water"},
+            {qnt = 1, unitName = "npc_boss_unit_9_morphling", delayBetween = 0, delayAfter = 1}
         },
         {
-            {qnt = 1, unitName = "npc_boss_unit_10_meepo_knight", msg ="Meepo gang"},
-            {qnt = 1, unitName = "npc_boss_unit_10_meepo_voodoo", msg ="Meepo gang"},
-            {qnt = 1, unitName = "npc_boss_unit_10_meepo_crystal", msg ="Meepo gang"}
+            {qnt = 20, unitName = "npc_boss_unit_10a", delayBetween = 0.2, delayAfter = 0.2, msg ="Meepo"},
+            {qnt = 1, unitName = "npc_boss_unit_10_meepo_crystal", delayBetween = 0.2, delayAfter = 10},
+            {qnt = 20, unitName = "npc_boss_unit_10a", delayBetween = 0.2, delayAfter = 0.2},
+            {qnt = 1, unitName = "npc_boss_unit_10_meepo_knight", delayBetween = 0.2, delayAfter = 10},
+            {qnt = 20, unitName = "npc_boss_unit_10a", delayBetween = 0.2, delayAfter = 0.2},
+            {qnt = 1, unitName = "npc_boss_unit_10_meepo_voodoo", delayBetween = 0.2, delayAfter = 0.2}
         }
     }
 }

@@ -1,5 +1,5 @@
 function Spawn( entityKeyValues )
-    abilityHeal = thisEntity:FindAbilityByName( "ability_boss3_heal" )
+    thisEntity._abilityHeal = thisEntity:FindAbilityByName( "ability_boss3_heal" )
     thisEntity:SetContextThink( "BossThink", BossThink, 1 )
 end
 
@@ -8,8 +8,8 @@ function BossThink()
         return nil
     end
 
-    if abilityHeal:IsFullyCastable() then
-      AICore:CastAbilityNoTarget(thisEntity, abilityHeal)
+    if thisEntity._abilityHeal:IsFullyCastable() then
+      AICore:CastAbilityNoTarget(thisEntity, thisEntity._abilityHeal)
     end
     return 1
 end

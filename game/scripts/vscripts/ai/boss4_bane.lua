@@ -1,5 +1,5 @@
 function Spawn( entityKeyValues )
-    abilityCurse = thisEntity:FindAbilityByName( "ability_boss4_curse" )
+    thisEntity._abilityCurse = thisEntity:FindAbilityByName( "ability_boss4_curse" )
     thisEntity:SetContextThink( "BossThink", BossThink, 4 )
 end
 
@@ -8,9 +8,9 @@ function BossThink()
         return nil
     end
 
-    if abilityCurse:IsFullyCastable() then
+    if thisEntity._abilityCurse:IsFullyCastable() then
         if GAME_DIFFICULT == 2 or RandomInt(1,10) <= 4 then -- 40% easy mode
-            AICore:CastAbilityNoTarget(thisEntity, abilityCurse)
+            AICore:CastAbilityNoTarget(thisEntity, thisEntity._abilityCurse)
         end
     end
     return 1

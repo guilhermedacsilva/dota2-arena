@@ -1,5 +1,5 @@
 function Spawn( entityKeyValues )
-    abilityFire = thisEntity:FindAbilityByName( "ability_boss5_fire" )
+    thisEntity._abilityFire = thisEntity:FindAbilityByName( "ability_boss5_fire" )
     thisEntity:SetContextThink( "BossThink", BossThink, 1 )
 end
 
@@ -8,8 +8,8 @@ function BossThink()
         return nil
     end
 
-    if abilityFire:IsFullyCastable() then
-      AICore:CastAbilityNoTarget(thisEntity, abilityFire)
+    if thisEntity._abilityFire:IsFullyCastable() then
+      AICore:CastAbilityNoTarget(thisEntity, thisEntity._abilityFire)
     end
     return 1
 end
